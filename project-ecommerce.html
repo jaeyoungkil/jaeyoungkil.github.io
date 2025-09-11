@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Commerce Platform - Jaeyoung Kil</title>
+    <meta name="description" content="E-Commerce Platform Project Details" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .project-header {
+            padding: calc(var(--grid-unit) * 6) 0 calc(var(--grid-unit) * 4) 0;
+            border-bottom: 1px solid var(--black);
+        }
+        .project-content {
+            padding: calc(var(--grid-unit) * 4) 0;
+        }
+        .back-link {
+            grid-column: 1 / 4;
+            margin-bottom: calc(var(--grid-unit) * 2);
+            display: inline-block;
+            color: var(--gray-medium);
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            transition: opacity 0.2s ease;
+        }
+        .back-link:hover {
+            opacity: 0.5;
+        }
+        .project-title {
+            grid-column: 5 / 12;
+            margin: 0;
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        .project-meta {
+            grid-column: 5 / 12;
+            margin-top: calc(var(--grid-unit) * 2);
+            display: flex;
+            gap: calc(var(--grid-unit) * 2);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--gray-medium);
+        }
+        .project-description {
+            grid-column: 5 / 10;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: calc(var(--grid-unit) * 3);
+        }
+        .project-details h3 {
+            grid-column: 1 / 4;
+            margin: 0;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--gray-medium);
+            font-weight: 400;
+        }
+        .project-details-content {
+            grid-column: 5 / 10;
+            margin: 0 0 calc(var(--grid-unit) * 3);
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(var(--grid-unit) / 2);
+        }
+        .tech-tag {
+            padding: calc(var(--grid-unit) / 4) calc(var(--grid-unit) / 2);
+            border: 1px solid var(--black);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>Jaeyoung Kil</h1>
+            <nav class="nav">
+                <a href="index.html#about">About</a>
+                <a href="index.html#education">Education</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="project-header">
+            <div class="container">
+                <a href="index.html#projects" class="back-link">← Back to Projects</a>
+                <h2 class="project-title">E-Commerce Platform</h2>
+                <div class="project-meta">
+                    <span>Full-Stack Development</span>
+                    <span>2024</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-content">
+            <div class="container">
+                <p class="project-description">
+                    A comprehensive e-commerce solution built from the ground up, featuring a modern React frontend paired with a robust Node.js backend. The platform handles everything from product browsing to secure payment processing, with real-time inventory management and user authentication.
+                </p>
+            </div>
+            
+            <div class="container">
+                <h3>Technologies</h3>
+                <div class="project-details-content">
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Stripe API</span>
+                        <span class="tech-tag">JWT Auth</span>
+                        <span class="tech-tag">Redux</span>
+                        <span class="tech-tag">WebSocket</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <h3>Key Features</h3>
+                <div class="project-details-content">
+                    <ul style="margin: 0; padding-left: 0; list-style: none; line-height: 1.6;">
+                        <li>• Secure user authentication with JWT tokens</li>
+                        <li>• Real-time inventory tracking and updates</li>
+                        <li>• Integrated Stripe payment processing</li>
+                        <li>• Admin dashboard for product management</li>
+                        <li>• Shopping cart with session persistence</li>
+                        <li>• Order tracking and history</li>
+                        <li>• Responsive design for mobile commerce</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container">
+                <h3>Challenges</h3>
+                <div class="project-details-content">
+                    <p style="margin: 0; line-height: 1.6;">
+                        The primary challenge was implementing real-time inventory synchronization across multiple concurrent users while maintaining data consistency. This was solved using WebSocket connections combined with database transactions to ensure accurate stock levels even during high-traffic periods.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-bottom">
+            <p>All rights reserved — © <span id="year">2024</span> Jaeyoung Kil</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Management App - Jaeyoung Kil</title>
+    <meta name="description" content="Task Management App Project Details" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .project-header {
+            padding: calc(var(--grid-unit) * 6) 0 calc(var(--grid-unit) * 4) 0;
+            border-bottom: 1px solid var(--black);
+        }
+        .project-content {
+            padding: calc(var(--grid-unit) * 4) 0;
+        }
+        .back-link {
+            grid-column: 1 / 4;
+            margin-bottom: calc(var(--grid-unit) * 2);
+            display: inline-block;
+            color: var(--gray-medium);
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            transition: opacity 0.2s ease;
+        }
+        .back-link:hover {
+            opacity: 0.5;
+        }
+        .project-title {
+            grid-column: 5 / 12;
+            margin: 0;
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        .project-meta {
+            grid-column: 5 / 12;
+            margin-top: calc(var(--grid-unit) * 2);
+            display: flex;
+            gap: calc(var(--grid-unit) * 2);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--gray-medium);
+        }
+        .project-description {
+            grid-column: 5 / 10;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: calc(var(--grid-unit) * 3);
+        }
+        .project-details h3 {
+            grid-column: 1 / 4;
+            margin: 0;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--gray-medium);
+            font-weight: 400;
+        }
+        .project-details-content {
+            grid-column: 5 / 10;
+            margin: 0 0 calc(var(--grid-unit) * 3);
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(var(--grid-unit) / 2);
+        }
+        .tech-tag {
+            padding: calc(var(--grid-unit) / 4) calc(var(--grid-unit) / 2);
+            border: 1px solid var(--black);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>Jaeyoung Kil</h1>
+            <nav class="nav">
+                <a href="index.html#about">About</a>
+                <a href="index.html#education">Education</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="project-header">
+            <div class="container">
+                <a href="index.html#projects" class="back-link">← Back to Projects</a>
+                <h2 class="project-title">Task Management App</h2>
+                <div class="project-meta">
+                    <span>Productivity Tool</span>
+                    <span>2023</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-content">
+            <div class="container">
+                <p class="project-description">
+                    A collaborative project management tool designed for teams to efficiently organize, track, and complete tasks. Features real-time synchronization, intuitive drag-and-drop interfaces, and comprehensive team collaboration capabilities built for modern distributed teams.
+                </p>
+            </div>
+            
+            <div class="container">
+                <h3>Technologies</h3>
+                <div class="project-details-content">
+                    <div class="tech-stack">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Vuex</span>
+                        <span class="tech-tag">DnD Kit</span>
+                        <span class="tech-tag">WebRTC</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">Cloud Functions</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <h3>Key Features</h3>
+                <div class="project-details-content">
+                    <ul style="margin: 0; padding-left: 0; list-style: none; line-height: 1.6;">
+                        <li>• Kanban board with drag-and-drop functionality</li>
+                        <li>• Real-time collaboration with live cursors</li>
+                        <li>• Task assignments and due date tracking</li>
+                        <li>• Team workload visualization</li>
+                        <li>• Automated notifications and reminders</li>
+                        <li>• Time tracking and productivity analytics</li>
+                        <li>• File attachments and commenting system</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container">
+                <h3>Challenges</h3>
+                <div class="project-details-content">
+                    <p style="margin: 0; line-height: 1.6;">
+                        Implementing real-time collaboration features while maintaining performance was the primary challenge. The solution involved using Firebase's real-time database with optimistic UI updates and conflict resolution strategies, ensuring smooth collaboration even with multiple users editing simultaneously.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-bottom">
+            <p>All rights reserved — © <span id="year">2024</span> Jaeyoung Kil</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

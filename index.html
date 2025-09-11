@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jaeyoung Kil</title>
+    <meta name="description" content="Portfolio of Jaeyoung Kil" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>Jaeyoung Kil</h1>
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <nav class="nav">
+          <a href="#about">About</a>
+          <a href="#education">Education</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="about" class="intro-section">
+        <div class="container">
+          <h2>About Me</h2>
+          <p>I'm a senior at Duke University studying ECE and CS, with a passion for FPGA and ASIC design. I'm particularly interested in exploring the intersection of AI and hardware, spanning everything from device fabrication to innovative computing solutions.</p>
+        </div>
+      </section>
+
+      <section id="education" class="education-section">
+        <div class="container">
+          <h2>Education</h2>
+          <div class="education-list">
+            <div class="education-item">
+              <h3>B.S.E. in Electrical&nbsp;and&nbsp;Computer&nbsp;Engineering, B.S. in Computer&nbsp;Science</h3>
+              <p class="institution"><strong>Duke University</strong></p>
+              <p class="year">2020 - 2026</p>
+              <p class="description"><strong>Relevant Coursework:</strong> Advanced&nbsp;Computer&nbsp;Architecture, CMOS&nbsp;VLSI&nbsp;Design, Operating&nbsp;Systems, Digital&nbsp;Systems, Digital&nbsp;Signal&nbsp;Processing, Microelectronic&nbsp;Circuits&nbsp;&&nbsp;Devices</p>
+              <br>
+              <p class="description"><strong>Honors:</strong> Tau Beta Pi</p>
+              <br>
+              <p class="description"><strong>Leave&nbsp;of&nbsp;Absence:</strong> Republic&nbsp;of&nbsp;Korea&nbsp;Army (2021 - 2023)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="skills-section">
+        <div class="container">
+          <h2>Skills</h2>
+          <div class="skills-list">
+            <div class="skill-category">
+              <h3>Programming Languages</h3>
+              <p>C/C++, Python, Java, MIPS/Assembly, SQL, R,&nbsp;MATLAB</p>
+            </div>
+            
+            <div class="skill-category">
+              <h3>EDA</h3>
+              <p>Cadence Virtuoso, Xilinx Vivado</p>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Hardware Description Languages</h3>
+              <p>Verilog, VHDL, SystemVerilog</p>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Circuit Design & Simulation</h3>
+              <p>PSpice, KiCAD, Cadence Allegro, Altium, LabVIEW</p>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Machine Learning & Development</h3>
+              <p>PyTorch, TensorFlow, Git, Docker, AWS</p>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Computer Architecture & Simulation</h3>
+              <p>Gem5, SPEC Benchmarks</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="projects-section">
+        <div class="container">
+          <h2>Featured Projects</h2>
+          <div class="projects-grid" id="projectsGrid">
+              <div class="project-card">
+                <h3>Frogger Arcade Game on FPGA</h3>
+                <p>A complete arcade game implementation on FPGA using custom CPU design. Features VGA graphics output, PS2 keyboard input, and PWM audio for full system integration from hardware design to game logic.</p>
+                <a href="#" class="read-more-btn">Read More</a>
+              </div>
+              
+              <div class="project-card">
+                <h3>Custom CPU Design</h3>
+                <p>A RISC-style 5-stage pipeline CPU in Verilog with hazard detection, data forwarding, and early branching. Synthesized on FPGA with functionality demonstrated through MIPS assembly programs driving VGA graphics.</p>
+                <a href="#" class="read-more-btn">Read More</a>
+              </div>
+              
+              <div class="project-card">
+                <h3>Mixed Signal Board Design</h3>
+                <p>An STM32F407 hardware platform with power delivery, clock generation, and multiple interfaces including motor drivers, high-resolution ADC, audio DAC, and Ethernet PHY. Multi-layer PCB layout completed in KiCAD with impedance control.</p>
+                <a href="#" class="read-more-btn">Read More</a>
+              </div>
+              
+              <div class="project-card">
+                <h3>2D Graphics Engine</h3>
+                <p>A custom 2D graphics engine in C++ supporting multiple blending modes, geometric primitives, and affine transformations. Benchmarked for high rendering throughput and visual accuracy.</p>
+                <a href="#" class="read-more-btn">Read More</a>
+              </div>
+              
+              <div class="project-card">
+                <h3>Ray Tracer</h3>
+                <p>A ray tracing renderer with realistic lighting, shadows, and reflections. Features anti-aliasing, multiple primitive support, and optimized intersection algorithms for high-quality image synthesis.</p>
+                <a href="#" class="read-more-btn">Read More</a>
+              </div>
+              
+              <div class="project-card">
+                <h3>Spoken Digit Recognition</h3>
+                <p>A machine learning system for recognizing spoken digits using audio signal processing and neural networks. Features feature extraction, preprocessing, and classification algorithms for accurate digit recognition.</p>
+                <a href="#" class="read-more-btn">Read More</a>
+              </div>
+              
+          </div>
+          <div class="view-more-projects">
+            <button id="viewMoreBtn" class="view-more-btn">
+              <span>View More Projects</span>
+              <span class="arrow">⌄</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="teaching" class="teaching-section">
+        <div class="container">
+          <h2>Teaching</h2>
+          <div class="teaching-list">
+            <div class="teaching-item">
+              <h3>ECE 331 TA - Fundamentals of Microelectronic Circuits</h3>
+              <p class="year">Fall 2025</p>
+            </div>
+            
+            <div class="teaching-item">
+              <h3>ECE 230 TA - Intro to Microelectronic Devices & Circuits</h3>
+              <p class="year">Spring 2025</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-section">
+        <div class="container">
+          <h2>Contact</h2>
+          <p>
+            Email me at <a href="mailto:jaeyoung.kil@duke.edu">jaeyoung.kil@duke.edu</a>
+            or find me on <a href="https://www.linkedin.com/in/jaeyoung-kil/" target="_blank" rel="noreferrer noopener">LinkedIn</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js" defer></script>
+  </body>
+  </html>
+
+

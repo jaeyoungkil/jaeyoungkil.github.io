@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Visualization Tool - Jaeyoung Kil</title>
+    <meta name="description" content="Data Visualization Tool Project Details" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .project-header {
+            padding: calc(var(--grid-unit) * 6) 0 calc(var(--grid-unit) * 4) 0;
+            border-bottom: 1px solid var(--black);
+        }
+        .project-content {
+            padding: calc(var(--grid-unit) * 4) 0;
+        }
+        .back-link {
+            grid-column: 1 / 4;
+            margin-bottom: calc(var(--grid-unit) * 2);
+            display: inline-block;
+            color: var(--gray-medium);
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            transition: opacity 0.2s ease;
+        }
+        .back-link:hover {
+            opacity: 0.5;
+        }
+        .project-title {
+            grid-column: 5 / 12;
+            margin: 0;
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        .project-meta {
+            grid-column: 5 / 12;
+            margin-top: calc(var(--grid-unit) * 2);
+            display: flex;
+            gap: calc(var(--grid-unit) * 2);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--gray-medium);
+        }
+        .project-description {
+            grid-column: 5 / 10;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: calc(var(--grid-unit) * 3);
+        }
+        .project-details h3 {
+            grid-column: 1 / 4;
+            margin: 0;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--gray-medium);
+            font-weight: 400;
+        }
+        .project-details-content {
+            grid-column: 5 / 10;
+            margin: 0 0 calc(var(--grid-unit) * 3);
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(var(--grid-unit) / 2);
+        }
+        .tech-tag {
+            padding: calc(var(--grid-unit) / 4) calc(var(--grid-unit) / 2);
+            border: 1px solid var(--black);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>Jaeyoung Kil</h1>
+            <nav class="nav">
+                <a href="index.html#about">About</a>
+                <a href="index.html#education">Education</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="project-header">
+            <div class="container">
+                <a href="index.html#projects" class="back-link">← Back to Projects</a>
+                <h2 class="project-title">Data Visualization Tool</h2>
+                <div class="project-meta">
+                    <span>Analytics Platform</span>
+                    <span>2023</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-content">
+            <div class="container">
+                <p class="project-description">
+                    An advanced analytics dashboard designed to process and visualize large datasets with interactive charts and real-time filtering. Built to handle millions of data points efficiently while providing intuitive exploration tools for data-driven decision making.
+                </p>
+            </div>
+            
+            <div class="container">
+                <h3>Technologies</h3>
+                <div class="project-details-content">
+                    <div class="tech-stack">
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">WebGL</span>
+                        <span class="tech-tag">Apache Spark</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <h3>Key Features</h3>
+                <div class="project-details-content">
+                    <ul style="margin: 0; padding-left: 0; list-style: none; line-height: 1.6;">
+                        <li>• Real-time data streaming and visualization</li>
+                        <li>• Custom chart builder with 15+ chart types</li>
+                        <li>• Advanced filtering and drill-down capabilities</li>
+                        <li>• Export functionality to multiple formats</li>
+                        <li>• Predictive analytics with ML integration</li>
+                        <li>• Performance optimization for large datasets</li>
+                        <li>• Collaborative dashboard sharing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container">
+                <h3>Challenges</h3>
+                <div class="project-details-content">
+                    <p style="margin: 0; line-height: 1.6;">
+                        The biggest challenge was rendering millions of data points smoothly in the browser. This was solved by implementing WebGL-based rendering for complex visualizations, data aggregation algorithms, and intelligent caching strategies that reduced load times by 80% while maintaining interactivity.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-bottom">
+            <p>All rights reserved — © <span id="year">2024</span> Jaeyoung Kil</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

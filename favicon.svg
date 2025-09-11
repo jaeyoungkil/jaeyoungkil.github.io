@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Hallabong orange body -->
+  <circle cx="16" cy="19" r="10" fill="#FF8C00"/>
+  <!-- Characteristic top bump/protrusion -->
+  <ellipse cx="16" cy="10" rx="3.5" ry="4" fill="#FF8C00"/>
+  <!-- Small stem/calyx on top -->
+  <circle cx="16" cy="6" r="2" fill="#228B22"/>
+  <!-- Tiny leaf accent -->
+  <ellipse cx="17.5" cy="5.5" rx="1" ry="2" fill="#32CD32" transform="rotate(20 17.5 5.5)"/>
+  <!-- Subtle fruit highlight -->
+  <ellipse cx="13" cy="16" rx="2.5" ry="3" fill="#FFA500" opacity="0.5"/>
+</svg>

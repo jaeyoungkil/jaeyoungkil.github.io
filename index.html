@@ -10,6 +10,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <script>
+      function toggleTheme() {
+        console.log('toggleTheme called');
+        const body = document.body;
+        const themeText = document.querySelector('.theme-text');
+        const currentTheme = body.getAttribute('data-theme');
+        
+        if (currentTheme === 'dark') {
+          body.removeAttribute('data-theme');
+          themeText.innerHTML = 'DARK<br>THEME';
+          localStorage.setItem('theme', 'light');
+          console.log('Switched to light theme');
+        } else {
+          body.setAttribute('data-theme', 'dark');
+          themeText.innerHTML = 'LIGHT<br>THEME';
+          localStorage.setItem('theme', 'dark');
+          console.log('Switched to dark theme');
+        }
+      }
+
+      // Restore saved theme on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        const body = document.body;
+        const themeText = document.querySelector('.theme-text');
+        
+        if (savedTheme === 'dark') {
+          body.setAttribute('data-theme', 'dark');
+          themeText.innerHTML = 'LIGHT<br>THEME';
+        } else {
+          themeText.innerHTML = 'DARK<br>THEME';
+        }
+      });
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -28,6 +62,9 @@
           <a href="#teaching">Teaching</a>
           <a href="#contact">Contact</a>
         </nav>
+        <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
+          <span class="theme-text">DARK<br>THEME</span>
+        </button>
       </div>
     </header>
 
@@ -178,7 +215,7 @@
       </section>
     </main>
 
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
   </body>
   </html>
 

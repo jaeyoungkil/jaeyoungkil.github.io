@@ -211,15 +211,16 @@ body {
   .site-header .container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     padding: 0 calc(var(--grid-unit) / 2);
     position: relative;
   }
-  
-  .mobile-menu-toggle {
-    margin-top: calc(var(--grid-unit) / 4);
+
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--grid-unit) / 2);
   }
-  
   
   .mobile-menu-toggle {
     display: flex;

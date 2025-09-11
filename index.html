@@ -254,11 +254,6 @@
     <header class="site-header">
       <div class="container">
         <h1>Jaeyoung Kil</h1>
-        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
         <nav class="nav">
           <a href="#about">About</a>
           <a href="#education">Education</a>
@@ -267,15 +262,22 @@
           <a href="#teaching">Teaching</a>
           <a href="#contact">Contact</a>
         </nav>
-        <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
-          <svg class="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <!-- Sun icon (shows in dark mode to switch to light) -->
-            <circle class="sun-icon" cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="currentColor" style="display: none;"/>
-            <path class="sun-icon" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" style="display: none;"/>
-            <!-- Moon icon (shows in light mode to switch to dark) -->
-            <path class="moon-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
-          </svg>
-        </button>
+        <div class="header-controls">
+          <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+          <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
+            <svg class="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <!-- Sun icon (shows in dark mode to switch to light) -->
+              <circle class="sun-icon" cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="currentColor" style="display: none;"/>
+              <path class="sun-icon" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" style="display: none;"/>
+              <!-- Moon icon (shows in light mode to switch to dark) -->
+              <path class="moon-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </header>
 

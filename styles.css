@@ -32,6 +32,12 @@
   color: var(--white);
 }
 
+[data-theme="dark"] .education-item .description,
+[data-theme="dark"] .skill-category p,
+[data-theme="dark"] .project-card p {
+  color: var(--gray-dark);
+}
+
 
 * {
   box-sizing: border-box;
@@ -363,6 +369,7 @@ section {
   padding: calc(var(--grid-unit) * 2.5) 0;
 }
 
+
 .education-section {
   padding-bottom: calc(var(--grid-unit) * 1.5);
 }
@@ -461,7 +468,7 @@ section:last-of-type {
   margin-left: var(--grid-unit);
   font-size: 15px;
   line-height: 1.4;
-  color: var(--gray-dark);
+  color: #666666;
   font-weight: 400;
   word-break: keep-all;
   overflow-wrap: normal;
@@ -504,7 +511,7 @@ section:last-of-type {
   margin: 0;
   font-size: 15px;
   line-height: 1.4;
-  color: var(--gray-dark);
+  color: #666666;
   font-weight: 400;
 }
 
@@ -567,7 +574,7 @@ section:last-of-type {
   margin: 0;
   font-size: 14px;
   line-height: 1.4;
-  color: var(--gray-dark);
+  color: #666666;
   flex-grow: 1;
 }
 

@@ -54,11 +54,162 @@
         }
       });
 
+      // Project content data
+      const projectData = {
+        'matrix-multiplication': {
+          title: 'Matrix Multiplication on FPGA',
+          status: 'In Progress',
+          description: 'This project implements a highly efficient systolic array-based matrix multiplication accelerator on FPGA hardware.',
+          details: [
+            'Developed in Verilog HDL for maximum performance',
+            'Systolic array architecture for parallel computation',
+            'Optimized for large matrix operations in AI/ML workloads',
+            'Currently implementing memory optimization techniques',
+            'Target: 100+ GOPS on Xilinx Zynq platform'
+          ],
+          technologies: ['Verilog', 'Xilinx Vivado', 'FPGA', 'Systolic Arrays'],
+          github: null // Not yet public
+        },
+        'frogger-game': {
+          title: 'Frogger Arcade Game on FPGA',
+          description: 'A complete recreation of the classic Frogger arcade game implemented entirely on FPGA hardware.',
+          details: [
+            'Custom RISC-style CPU designed from scratch',
+            'VGA graphics controller for 640x480 display',
+            'Joystick input processing with debouncing',
+            'PWM audio generation for game sounds',
+            'Sprite-based graphics with collision detection',
+            'Multiple difficulty levels and scoring system'
+          ],
+          technologies: ['Verilog', 'FPGA', 'VGA', 'Digital Design', 'Custom CPU'],
+          github: null
+        },
+        'custom-cpu': {
+          title: 'Custom RISC CPU Design',
+          description: 'A complete 5-stage pipeline RISC processor implementation with advanced features.',
+          details: [
+            '5-stage pipeline: Fetch, Decode, Execute, Memory, Writeback',
+            'Hazard detection and data forwarding units',
+            '32-bit RISC instruction set architecture',
+            'Branch prediction for improved performance',
+            'Cache memory system with hit/miss handling',
+            'Supports arithmetic, logical, and memory operations'
+          ],
+          technologies: ['Verilog', 'Computer Architecture', 'Pipeline Design', 'RISC'],
+          github: null
+        },
+        'pcb-design': {
+          title: 'Mixed Signal Board Design',
+          description: 'Professional multi-layer PCB design featuring STM32 microcontroller with comprehensive peripheral integration.',
+          details: [
+            'STM32F407 ARM Cortex-M4 microcontroller',
+            'Multi-channel power delivery system (3.3V, 5V, 12V)',
+            'Dual motor drivers with current sensing',
+            '16-bit ADC interface for sensor data acquisition',
+            'Ethernet connectivity with PHY integration',
+            '6-layer PCB with controlled impedance traces',
+            'EMI/EMC considerations and shielding'
+          ],
+          technologies: ['KiCAD', 'PCB Design', 'STM32', 'Analog Design', 'Power Systems'],
+          github: null
+        },
+        'graphics-engine': {
+          title: '2D Graphics Engine',
+          description: 'A custom-built 2D graphics rendering engine in C++ with advanced visual effects capabilities.',
+          details: [
+            'Hardware-accelerated rendering pipeline',
+            'Multiple blending modes (alpha, additive, multiply)',
+            'Affine transformations (rotation, scaling, translation)',
+            'Sprite batching for optimal performance',
+            'Texture management and caching system',
+            'Particle system for visual effects',
+            'Vector graphics support with anti-aliasing'
+          ],
+          technologies: ['C++', 'OpenGL', 'Graphics Programming', 'Linear Algebra'],
+          github: null
+        },
+        'ray-tracer': {
+          title: 'Ray Tracing Renderer',
+          description: 'A physically-based ray tracing renderer implementing realistic lighting and material models.',
+          details: [
+            'Monte Carlo path tracing algorithm',
+            'Physically-based material models (PBR)',
+            'Global illumination with indirect lighting',
+            'Anti-aliasing through supersampling',
+            'Realistic shadows and reflections',
+            'Support for complex geometries and meshes',
+            'Multi-threading for improved performance'
+          ],
+          technologies: ['C++', 'Computer Graphics', 'Physics Simulation', 'Parallel Computing'],
+          github: null
+        },
+        'digit-recognition': {
+          title: 'Spoken Digit Recognition',
+          description: 'Machine learning system for real-time spoken digit recognition using advanced signal processing.',
+          details: [
+            'Real-time audio capture and preprocessing',
+            'Feature extraction using MFCC (Mel-frequency cepstral coefficients)',
+            'K-means clustering for pattern recognition',
+            'Support vector machine (SVM) classification',
+            '95%+ accuracy on test dataset',
+            'Noise reduction and signal enhancement',
+            'Cross-validation for model validation'
+          ],
+          technologies: ['Python', 'Machine Learning', 'Signal Processing', 'SciKit-Learn'],
+          github: null
+        },
+        'this-website': {
+          title: 'Portfolio Website',
+          description: 'This responsive portfolio website built with modern web technologies and design principles.',
+          details: [
+            'Responsive design for all device sizes',
+            'Dark/light theme toggle with persistence',
+            'Clean, professional typography system',
+            'CSS Grid layout for precise positioning',
+            'Smooth animations and transitions',
+            'Semantic HTML for accessibility',
+            'Optimized for performance and SEO'
+          ],
+          technologies: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'UX/UI'],
+          github: 'https://github.com/jaeyoungkil/jaeyoungkil.github.io'
+        }
+      };
+
       // Modal functions - must be in HTML for inline onclick handlers
-      function showProjectModal() {
-        console.log('showProjectModal called');
+      function showProjectModal(projectId) {
+        console.log('showProjectModal called with:', projectId);
         const modal = document.getElementById('projectModal');
-        if (modal) {
+        const modalContent = document.getElementById('modalContent');
+        
+        if (modal && modalContent) {
+          const project = projectData[projectId];
+          if (project) {
+            // Generate modal content
+            let detailsList = project.details.map(detail => `<li>${detail}</li>`).join('');
+            let techTags = project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
+            let statusBadge = project.status ? `<span class="status-badge">${project.status}</span>` : '';
+            let githubLink = project.github ? `<a href="${project.github}" target="_blank" rel="noopener" class="github-link">View on GitHub →</a>` : '';
+            
+            modalContent.innerHTML = `
+              <h3>${project.title} ${statusBadge}</h3>
+              <p class="project-description">${project.description}</p>
+              <div class="project-details">
+                <h4>Project Details:</h4>
+                <ul>${detailsList}</ul>
+              </div>
+              <div class="technologies">
+                <h4>Technologies Used:</h4>
+                <div class="tech-tags">${techTags}</div>
+              </div>
+              ${githubLink}
+            `;
+          } else {
+            modalContent.innerHTML = `
+              <h3>Project Not Found</h3>
+              <p>Sorry, the details for this project are not available.</p>
+            `;
+          }
+          
           modal.style.display = 'flex';
           document.body.style.overflow = 'hidden';
           console.log('Modal opened successfully');
@@ -195,51 +346,52 @@
         <div class="container">
           <h2>Featured Projects</h2>
           <div class="projects-grid" id="projectsGrid">
-              <div class="project-card">
+              <div class="project-card" onclick="showProjectModal('matrix-multiplication')">
                 <h3>Matrix Multiplication on FPGA (In&nbsp;Progress)</h3>
                 <p>Systolic array matrix multiplicator in Verilog.</p>
-                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
+                <span class="read-more-btn">Read More</span>
               </div>
               
-              <div class="project-card">
+              <div class="project-card" onclick="showProjectModal('frogger-game')">
                 <h3>Frogger Arcade Game on FPGA</h3>
                 <p>Complete arcade game on FPGA with custom CPU design, VGA graphics, joystick input, and PWM audio.</p>
-                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
+                <span class="read-more-btn">Read More</span>
               </div>
               
-              <div class="project-card">
+              <div class="project-card" onclick="showProjectModal('custom-cpu')">
                 <h3>Custom CPU Design</h3>
                 <p>RISC-style 5-stage pipeline CPU in Verilog with hazard detection and data forwarding.</p>
-                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
+                <span class="read-more-btn">Read More</span>
               </div>
               
-              <div class="project-card">
+              <div class="project-card" onclick="showProjectModal('pcb-design')">
                 <h3>Mixed Signal Board Design</h3>
                 <p>STM32F407 platform with power delivery, motor drivers, ADC, and Ethernet. Multi-layer PCB in KiCAD.</p>
-                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
+                <span class="read-more-btn">Read More</span>
               </div>
               
-              <div class="project-card">
+              <div class="project-card" onclick="showProjectModal('graphics-engine')">
                 <h3>2D Graphics Engine</h3>
                 <p>Custom 2D graphics engine in C++ with blending modes and affine transformations.</p>
-                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
+                <span class="read-more-btn">Read More</span>
               </div>
               
-              <div class="project-card">
+              <div class="project-card" onclick="showProjectModal('ray-tracer')">
                 <h3>Ray Tracer</h3>
                 <p>Ray tracing renderer with realistic lighting, shadows, anti-aliasing.</p>
-                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
+                <span class="read-more-btn">Read More</span>
               </div>
               
-              <div class="project-card hidden-project" style="display: none;">
+              <div class="project-card hidden-project" style="display: none;" onclick="showProjectModal('digit-recognition')">
                 <h3>Spoken Digit Recognition</h3>
                 <p>Machine learning system for spoken digit recognition using audio processing and cluster algorithms.</p>
-                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
+                <span class="read-more-btn">Read More</span>
               </div>
               
-              <div class="project-card hidden-project" style="display: none;">
+              <div class="project-card hidden-project" style="display: none;" onclick="showProjectModal('this-website')">
                 <h3>And This Website!</h3>
                 <p>Custom-built portfolio website with responsive design, dark/light theme toggle, and clean typography.</p>
+                <span class="read-more-btn">Read More</span>
               </div>
               
           </div>
@@ -284,8 +436,9 @@
     <div id="projectModal" class="modal" style="display: none;">
       <div class="modal-content">
         <span class="close-modal">&times;</span>
-        <h3>Website Under Construction</h3>
-        <p>This website is currently being updated with detailed project information. Please check back soon for more details about this project!</p>
+        <div id="modalContent">
+          <!-- Content will be populated by JavaScript -->
+        </div>
       </div>
     </div>
 

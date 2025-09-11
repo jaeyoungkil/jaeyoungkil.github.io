@@ -576,20 +576,17 @@ section:last-of-type {
 }
 
 .read-more-btn {
-  background: none;
   color: var(--black);
-  border: none;
-  padding: 0;
   font-family: inherit;
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  cursor: pointer;
   transition: all 0.2s ease;
   align-self: flex-start;
   margin-top: calc(var(--grid-unit) / 2);
   display: inline-block;
+  pointer-events: none; /* Prevent clicking on the span itself, let the card handle it */
 }
 
 .read-more-btn:hover {
@@ -786,10 +783,12 @@ section:last-of-type {
   background-color: var(--white);
   padding: calc(var(--grid-unit) * 1.5);
   border-radius: 8px;
-  max-width: 400px;
+  max-width: 600px;
   width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
   position: relative;
-  text-align: center;
+  text-align: left;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -820,6 +819,97 @@ section:last-of-type {
 
 .close-modal:hover {
   color: var(--black);
+}
+
+/* Project Modal Specific Styles */
+.project-description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gray-dark);
+  margin-bottom: calc(var(--grid-unit) * 1.5);
+}
+
+.project-details h4,
+.technologies h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--black);
+  margin: calc(var(--grid-unit) * 1.5) 0 calc(var(--grid-unit) / 2) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.project-details ul {
+  margin: 0;
+  padding-left: calc(var(--grid-unit) * 1.5);
+}
+
+.project-details li {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--gray-dark);
+  margin-bottom: calc(var(--grid-unit) / 3);
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--grid-unit) / 3);
+  margin-bottom: calc(var(--grid-unit) * 1.5);
+}
+
+.tech-tag {
+  background-color: var(--gray-light);
+  color: var(--black);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.status-badge {
+  background-color: #f0ad4e;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-left: 8px;
+}
+
+.github-link {
+  display: inline-block;
+  color: var(--black);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--black);
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-top: calc(var(--grid-unit) / 2);
+  transition: all 0.2s ease;
+}
+
+.github-link:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+/* Make project cards more clickable */
+.project-card {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 

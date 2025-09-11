@@ -53,6 +53,39 @@
           moonIcon.style.display = 'block';
         }
       });
+
+      // Modal functions
+      function showProjectModal() {
+        const modal = document.getElementById('projectModal');
+        modal.style.display = 'flex';
+        
+        // Prevent scrolling on body when modal is open
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeProjectModal() {
+        const modal = document.getElementById('projectModal');
+        modal.style.display = 'none';
+        
+        // Restore scrolling on body
+        document.body.style.overflow = 'auto';
+      }
+
+      // Close modal when clicking outside of it
+      window.addEventListener('click', function(event) {
+        const modal = document.getElementById('projectModal');
+        if (event.target === modal) {
+          closeProjectModal();
+        }
+      });
+
+      // Close modal when clicking the X button
+      document.addEventListener('DOMContentLoaded', function() {
+        const closeBtn = document.querySelector('.close-modal');
+        if (closeBtn) {
+          closeBtn.addEventListener('click', closeProjectModal);
+        }
+      });
     </script>
   </head>
   <body>
@@ -154,43 +187,43 @@
               <div class="project-card">
                 <h3>Matrix Multiplication on FPGA (In&nbsp;Progress)</h3>
                 <p>Systolic array matrix multiplicator in Verilog.</p>
-                <a href="#" class="read-more-btn">Read More</a>
+                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
               </div>
               
               <div class="project-card">
                 <h3>Frogger Arcade Game on FPGA</h3>
                 <p>Complete arcade game on FPGA with custom CPU design, VGA graphics, joystick input, and PWM audio.</p>
-                <a href="#" class="read-more-btn">Read More</a>
+                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
               </div>
               
               <div class="project-card">
                 <h3>Custom CPU Design</h3>
                 <p>RISC-style 5-stage pipeline CPU in Verilog with hazard detection and data forwarding.</p>
-                <a href="#" class="read-more-btn">Read More</a>
+                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
               </div>
               
               <div class="project-card">
                 <h3>Mixed Signal Board Design</h3>
                 <p>STM32F407 platform with power delivery, motor drivers, ADC, and Ethernet. Multi-layer PCB in KiCAD.</p>
-                <a href="#" class="read-more-btn">Read More</a>
+                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
               </div>
               
               <div class="project-card">
                 <h3>2D Graphics Engine</h3>
                 <p>Custom 2D graphics engine in C++ with blending modes and affine transformations.</p>
-                <a href="#" class="read-more-btn">Read More</a>
+                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
               </div>
               
               <div class="project-card">
                 <h3>Ray Tracer</h3>
                 <p>Ray tracing renderer with realistic lighting, shadows, anti-aliasing.</p>
-                <a href="#" class="read-more-btn">Read More</a>
+                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
               </div>
               
               <div class="project-card hidden-project" style="display: none;">
                 <h3>Spoken Digit Recognition</h3>
                 <p>Machine learning system for spoken digit recognition using audio processing and cluster algorithms.</p>
-                <a href="#" class="read-more-btn">Read More</a>
+                <button class="read-more-btn" onclick="showProjectModal()">Read More</button>
               </div>
               
               <div class="project-card hidden-project" style="display: none;">
@@ -235,6 +268,15 @@
         </div>
       </section>
     </main>
+
+    <!-- Modal for project details -->
+    <div id="projectModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Website Under Construction</h3>
+        <p>This website is currently being updated with detailed project information. Please check back soon for more details about this project!</p>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>

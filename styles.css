@@ -11,9 +11,9 @@
 
 [data-theme="dark"] {
   /* Dark theme */
-  --white: #1e2028;
+  --white: #2a2a2b;
   --black: #f5f5dc;
-  --gray-light: #2e3038;
+  --gray-light: #3a3a3b;
   --gray-medium: #b8b8b8;
   --gray-dark: #e0e0e0;
 }

@@ -27,9 +27,9 @@
 }
 
 [data-theme="dark"] .theme-toggle {
-  background: #ffffff;
-  border: 1px solid #ffffff;
-  color: #000000;
+  background: var(--black);
+  border: 1px solid var(--black);
+  color: var(--white);
 }
 
 
@@ -127,9 +127,9 @@ body {
 
 /* Theme Toggle */
 .theme-toggle {
-  background: #000000;
-  border: 1px solid #000000;
-  color: #ffffff;
+  background: var(--black);
+  border: 1px solid var(--black);
+  color: var(--white);
   padding: 8px 12px;
   font-size: 10px;
   font-weight: 500;

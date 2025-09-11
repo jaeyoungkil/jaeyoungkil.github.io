@@ -14,17 +14,22 @@
       function toggleTheme() {
         console.log('toggleTheme called');
         const body = document.body;
-        const themeText = document.querySelector('.theme-text');
+        const sunIcon = document.querySelectorAll('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
         const currentTheme = body.getAttribute('data-theme');
         
         if (currentTheme === 'dark') {
           body.removeAttribute('data-theme');
-          themeText.innerHTML = 'DARK<br>THEME';
+          // Show moon icon (in light mode, click to go to dark)
+          sunIcon.forEach(icon => icon.style.display = 'none');
+          moonIcon.style.display = 'block';
           localStorage.setItem('theme', 'light');
           console.log('Switched to light theme');
         } else {
           body.setAttribute('data-theme', 'dark');
-          themeText.innerHTML = 'LIGHT<br>THEME';
+          // Show sun icon (in dark mode, click to go to light)
+          sunIcon.forEach(icon => icon.style.display = 'block');
+          moonIcon.style.display = 'none';
           localStorage.setItem('theme', 'dark');
           console.log('Switched to dark theme');
         }
@@ -34,13 +39,18 @@
       document.addEventListener('DOMContentLoaded', function() {
         const savedTheme = localStorage.getItem('theme');
         const body = document.body;
-        const themeText = document.querySelector('.theme-text');
+        const sunIcon = document.querySelectorAll('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
         
         if (savedTheme === 'dark') {
           body.setAttribute('data-theme', 'dark');
-          themeText.innerHTML = 'LIGHT<br>THEME';
+          // Show sun icon (in dark mode, click to go to light)
+          sunIcon.forEach(icon => icon.style.display = 'block');
+          moonIcon.style.display = 'none';
         } else {
-          themeText.innerHTML = 'DARK<br>THEME';
+          // Show moon icon (in light mode, click to go to dark)
+          sunIcon.forEach(icon => icon.style.display = 'none');
+          moonIcon.style.display = 'block';
         }
       });
     </script>
@@ -63,7 +73,13 @@
           <a href="#contact">Contact</a>
         </nav>
         <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
-          <span class="theme-text">DARK<br>THEME</span>
+          <svg class="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <!-- Sun icon (shows in dark mode to switch to light) -->
+            <circle class="sun-icon" cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="currentColor" style="display: none;"/>
+            <path class="sun-icon" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" style="display: none;"/>
+            <!-- Moon icon (shows in light mode to switch to dark) -->
+            <path class="moon-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+          </svg>
         </button>
       </div>
     </header>

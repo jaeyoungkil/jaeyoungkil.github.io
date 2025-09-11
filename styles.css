@@ -387,7 +387,7 @@ section:last-of-type {
 .intro-section h2 {
   grid-column: 1 / 3;
   margin: 0;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -411,7 +411,7 @@ section:last-of-type {
 .education-section h2 {
   grid-column: 1 / 3;
   margin: 0;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -479,7 +479,7 @@ section:last-of-type {
 .skills-section h2 {
   grid-column: 1 / 3;
   margin: 0;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -516,7 +516,7 @@ section:last-of-type {
 .projects-section h2 {
   grid-column: 1 / 3;
   margin: 0;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -651,7 +651,7 @@ section:last-of-type {
 .teaching-section h2 {
   grid-column: 1 / 3;
   margin: 0;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -711,7 +711,7 @@ section:last-of-type {
 .contact-section h2 {
   grid-column: 1 / 3;
   margin: 0;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;

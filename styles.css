@@ -88,7 +88,10 @@ body {
 }
 
 .site-header .container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
   align-items: center;
+  gap: var(--grid-unit);
 }
 
 .site-header h1 {

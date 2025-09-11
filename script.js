@@ -116,20 +116,8 @@ function isMobile() {
   return window.innerWidth <= 1024;
 }
 
-document.addEventListener('click', (e) => {
-  // Don't handle project card clicks if clicking on nav or menu toggle
-  if (e.target.closest('.nav') || e.target.closest('.mobile-menu-toggle')) {
-    return;
-  }
-  
-  const projectCard = e.target.closest('.project-card');
-  if (projectCard && isMobile()) {
-    const readMoreBtn = projectCard.querySelector('.read-more-btn');
-    if (readMoreBtn) {
-      window.location.href = readMoreBtn.href;
-    }
-  }
-});
+// Removed problematic mobile project card click functionality
+// Users will need to click the "Read More" buttons directly
 
 // Position view more button to align with rightmost project card
 function positionViewMoreButton() {
@@ -190,5 +178,7 @@ if (viewMoreBtn && projectsGrid) {
     setTimeout(positionViewMoreButton, 10);
   });
 }
+
+// Modal functions are now defined in the HTML file
 
 

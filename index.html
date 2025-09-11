@@ -54,36 +54,47 @@
         }
       });
 
-      // Modal functions
+      // Modal functions - must be in HTML for inline onclick handlers
       function showProjectModal() {
+        console.log('showProjectModal called');
         const modal = document.getElementById('projectModal');
-        modal.style.display = 'flex';
-        
-        // Prevent scrolling on body when modal is open
-        document.body.style.overflow = 'hidden';
+        if (modal) {
+          modal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+          console.log('Modal opened successfully');
+        } else {
+          console.log('ERROR: Modal element not found!');
+        }
       }
 
       function closeProjectModal() {
+        console.log('closeProjectModal called');
         const modal = document.getElementById('projectModal');
-        modal.style.display = 'none';
-        
-        // Restore scrolling on body
-        document.body.style.overflow = 'auto';
+        if (modal) {
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+          console.log('Modal closed');
+        }
       }
 
-      // Close modal when clicking outside of it
-      window.addEventListener('click', function(event) {
-        const modal = document.getElementById('projectModal');
-        if (event.target === modal) {
-          closeProjectModal();
-        }
-      });
-
-      // Close modal when clicking the X button
+      // Close modal when clicking outside or X button
       document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('projectModal');
         const closeBtn = document.querySelector('.close-modal');
+        
+        console.log('DOM loaded. Modal found:', !!modal);
+        console.log('Close button found:', !!closeBtn);
+        
         if (closeBtn) {
           closeBtn.addEventListener('click', closeProjectModal);
+        }
+        
+        if (modal) {
+          modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+              closeProjectModal();
+            }
+          });
         }
       });
     </script>

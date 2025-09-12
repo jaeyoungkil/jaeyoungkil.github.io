@@ -34,6 +34,72 @@ if (toTop) {
   toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 }
 
+// Media modal functions
+function openMediaModal(src, alt, isVideo) {
+  const imageModal = document.getElementById('imageModal');
+  const expandedImage = document.getElementById('expandedImage');
+  const expandedVideo = document.getElementById('expandedVideo');
+  
+  if (isVideo) {
+    expandedImage.style.display = 'none';
+    expandedVideo.style.display = 'block';
+    expandedVideo.querySelector('source[type="video/quicktime"]').src = src;
+    expandedVideo.querySelector('source[type="video/mp4"]').src = src;
+    expandedVideo.load();
+  } else {
+    expandedVideo.style.display = 'none';
+    expandedImage.style.display = 'block';
+    expandedImage.src = src;
+    expandedImage.alt = alt;
+  }
+  
+  imageModal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+  const imageModal = document.getElementById('imageModal');
+  const expandedVideo = document.getElementById('expandedVideo');
+  
+  // Pause video if playing
+  if (expandedVideo && !expandedVideo.paused) {
+    expandedVideo.pause();
+  }
+  
+  imageModal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Keep the old function for backward compatibility
+function openImageModal(src, alt) {
+  openMediaModal(src, alt, false);
+}
+
+// Add event listeners for image modal
+document.addEventListener('DOMContentLoaded', function() {
+  const closeImageBtn = document.querySelector('.close-image-modal');
+  const imageModal = document.getElementById('imageModal');
+  
+  if (closeImageBtn) {
+    closeImageBtn.addEventListener('click', closeImageModal);
+  }
+  
+  if (imageModal) {
+    imageModal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeImageModal();
+      }
+    });
+  }
+  
+  // Close on escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeImageModal();
+    }
+  });
+});
+
 // Project card entrance animation using IntersectionObserver
 const projectCards = document.querySelectorAll(".project-card");
 const observer = new IntersectionObserver(

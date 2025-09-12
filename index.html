@@ -58,105 +58,125 @@
       const projectData = {
         'matrix-multiplication': {
           title: 'Matrix Multiplication on FPGA',
-          status: 'In Progress',
-          description: 'This project implements a highly efficient systolic array-based matrix multiplication accelerator on FPGA hardware.',
+          description: 'FPGA-based systolic array 4x4 matrix multiplier.',
           details: [
-            'Developed in Verilog HDL for maximum performance',
-            'Systolic array architecture for parallel computation',
-            'Optimized for large matrix operations in AI/ML workloads',
-            'Currently implementing memory optimization techniques',
-            'Target: 100+ GOPS on Xilinx Zynq platform'
+            '16-element processing element array with multiply-accumulate units',
+            'Calculated timing control for skewed data injection patterns',
+            'Pipelined data flow with north-south and west-east propagation',
+            'Complete controller module with computation state machine',
+            'Testbench with verification framework'
           ],
-          technologies: ['Verilog', 'Xilinx Vivado', 'FPGA', 'Systolic Arrays'],
-          github: null // Not yet public
+          technologies: ['Verilog', 'FPGA', 'Systolic Arrays'],
+          github: null
         },
         'frogger-game': {
           title: 'Frogger Arcade Game on FPGA',
-          description: 'A complete recreation of the classic Frogger arcade game implemented entirely on FPGA hardware.',
+          description: 'Classic Frogger arcade game implemented on an FPGA with custom CPU, I/O interface modules, and assembly code for game control.',
           details: [
-            'Custom RISC-style CPU designed from scratch',
-            'VGA graphics controller for 640x480 display',
-            'Joystick input processing with debouncing',
-            'PWM audio generation for game sounds',
-            'Sprite-based graphics with collision detection',
-            'Multiple difficulty levels and scoring system'
+            'Built on custom 5-stage pipelined CPU with MMIO interface',
+            'VGA controller module for 640x480 display with timing generation',
+            'PWM audio controller with frequency serialization for game sounds',
+            'Sprite rendering system with dedicated image and color memory modules',
+            'Assembly language game logic with hardware-software integration',
+            'Game features include collision detection, game timer, life counts, and restarts'
           ],
-          technologies: ['Verilog', 'FPGA', 'VGA', 'Digital Design', 'Custom CPU'],
-          github: null
+          technologies: ['Verilog', 'FPGA', 'Digital Design', 'Assembly', 'Xilinx Vivado'],
+          github: null,
+          gallery: [
+            { src: 'pics/frogger_gameplay.mov', alt: 'Frogger arcade game gameplay demonstration' }
+          ]
         },
         'custom-cpu': {
-          title: 'Custom RISC CPU Design',
-          description: 'A complete 5-stage pipeline RISC processor implementation with advanced features.',
+          title: 'Custom CPU Design',
+          description: '5-stage pipelined RISC-style processor with hazard detection and branching.',
           details: [
-            '5-stage pipeline: Fetch, Decode, Execute, Memory, Writeback',
-            'Hazard detection and data forwarding units',
-            '32-bit RISC instruction set architecture',
-            'Branch prediction for improved performance',
-            'Cache memory system with hit/miss handling',
-            'Supports arithmetic, logical, and memory operations'
+            '5-stage pipeline with hazard detection and data forwarding',
+            'Integrated multiply/divide unit with stall control',
+            'Exception handling for arithmetic overflow and divide-by-zero',
+            'Used Xilinx Vivado to synthesize on Nexys A7-100T FPGA board',
+            'Performed timing analysis and achieved clock frequency of 50MHz'
           ],
-          technologies: ['Verilog', 'Computer Architecture', 'Pipeline Design', 'RISC'],
+          technologies: ['Verilog', 'Xilinx Vivado', 'FPGA', 'Computer Architecture'],
           github: null
         },
         'pcb-design': {
           title: 'Mixed Signal Board Design',
-          description: 'Professional multi-layer PCB design featuring STM32 microcontroller with comprehensive peripheral integration.',
+          description: 'STM32F407 mixed-signal PCB with power management, motor control, high-resolution ADC, and Ethernet PHY integration.',
           details: [
-            'STM32F407 ARM Cortex-M4 microcontroller',
-            'Multi-channel power delivery system (3.3V, 5V, 12V)',
-            'Dual motor drivers with current sensing',
-            '16-bit ADC interface for sensor data acquisition',
-            'Ethernet connectivity with PHY integration',
-            '6-layer PCB with controlled impedance traces',
-            'EMI/EMC considerations and shielding'
+            'STM32F407 microcontroller system with peripheral interfaces (USART, I²C, SPI)',
+            'Multi-rail power distribution with DC-DC converters and LDO regulators',
+            'Motor driver circuits using MOSFET H-bridge topology with thermal management',
+            'High-resolution ADC design (12/16/18-bit) with microphone sensitivity optimization',
+            'Ethernet PHY/ESD/EMI protection with 10/100/1000Mbps support and noise filtering',
+            'Multi-layer PCB layout with controlled impedance routing and EMI/EMC compliance',
+            'Schematic design including power trees, clock distribution, and protection circuits',
+            '3D PCB modeling and pre-production analysis for thermal considerations'
           ],
-          technologies: ['KiCAD', 'PCB Design', 'STM32', 'Analog Design', 'Power Systems'],
+          technologies: ['KiCAD', 'PCB Design', 'STM32F407', 'Mixed-Signal Design', 'Power Electronics', 'EMI/EMC'],
           github: null
         },
         'graphics-engine': {
           title: '2D Graphics Engine',
-          description: 'A custom-built 2D graphics rendering engine in C++ with advanced visual effects capabilities.',
+          description: '2D graphics engine with custom shaders, Porter-Duff blending, and scanline rasterization.',
           details: [
-            'Hardware-accelerated rendering pipeline',
-            'Multiple blending modes (alpha, additive, multiply)',
-            'Affine transformations (rotation, scaling, translation)',
-            'Sprite batching for optimal performance',
-            'Texture management and caching system',
-            'Particle system for visual effects',
-            'Vector graphics support with anti-aliasing'
+            'Custom canvas implementation with pixel-level drawing control',
+            'Porter-Duff compositing with 12 blend modes for layering effects',
+            'Matrix transformations for coordinate system manipulation',
+            'Path and polygon rendering with arbitrary shape support',
+            'Shader system supporting textures, gradients, and patterns',
+            'Triangle mesh rendering with barycentric coordinate interpolation',
+            'Quadrilateral texture mapping using bilinear interpolation',
+            'Scanline rasterization for efficient pixel filling'
           ],
-          technologies: ['C++', 'OpenGL', 'Graphics Programming', 'Linear Algebra'],
-          github: null
+          technologies: ['C++', 'Computer Graphics', 'Rasterization', 'Linear Algebra'],
+          github: null,
+          gallery: [
+            { src: 'pics/graphics_1.png', alt: 'Triangle mesh rendering with textures' },
+            { src: 'pics/graphics_2.png', alt: 'Path rendering with star shapes' },
+            { src: 'pics/graphics_3.png', alt: 'Gradient shaders with blend modes' },
+            { src: 'pics/graphics_4.png', alt: 'Stroke path generation' },
+            { src: 'pics/graphics_5.png', alt: 'Voronoi shader pattern' },
+            { src: 'pics/graphics_6.png', alt: 'Spock image with quadrilateral rendering' }
+          ]
         },
         'ray-tracer': {
-          title: 'Ray Tracing Renderer',
-          description: 'A physically-based ray tracing renderer implementing realistic lighting and material models.',
+          title: 'Ray Tracer',
+          description: 'Ray tracer with physically-based materials and realistic lighting effects.',
           details: [
-            'Monte Carlo path tracing algorithm',
-            'Physically-based material models (PBR)',
-            'Global illumination with indirect lighting',
-            'Anti-aliasing through supersampling',
-            'Realistic shadows and reflections',
-            'Support for complex geometries and meshes',
-            'Multi-threading for improved performance'
+            'Ray-sphere and ray-plane intersection calculations',
+            'Physically-based materials: Lambertian, metallic, and dielectric surfaces',
+            'Realistic depth of field and defocus blur effects',
+            'Anti-aliasing through random sampling',
+            'Global illumination with recursive ray bouncing',
+            'Sphere primitives with surface normal calculations',
+            'PPM image format output'
           ],
-          technologies: ['C++', 'Computer Graphics', 'Physics Simulation', 'Parallel Computing'],
-          github: null
+          technologies: ['C++', 'Computer Graphics'],
+          github: null,
+          gallery: [
+            { src: 'pics/ray_1.png', alt: 'Ray traced scene 1' },
+            { src: 'pics/ray_2.png', alt: 'Ray traced scene 2' },
+            { src: 'pics/ray_3.png', alt: 'Ray traced scene 3' }
+          ],
+          reference: {
+            html: '<a href="https://raytracing.github.io/books/RayTracingTheRestOfYourLife.html" target="_blank" rel="noopener"><cite>Ray Tracing: The Rest of Your Life</cite></a>',
+            url: null
+          }
         },
         'digit-recognition': {
           title: 'Spoken Digit Recognition',
-          description: 'Machine learning system for real-time spoken digit recognition using advanced signal processing.',
+          description: 'GMM-based speech recognition system for digits (0-9) using Mel-Frequency Cepstral Coefficients and maximum likelihood classification.',
           details: [
-            'Real-time audio capture and preprocessing',
-            'Feature extraction using MFCC (Mel-frequency cepstral coefficients)',
-            'K-means clustering for pattern recognition',
-            'Support vector machine (SVM) classification',
-            '95%+ accuracy on test dataset',
-            'Noise reduction and signal enhancement',
-            'Cross-validation for model validation'
+            'Implemented Gaussian Mixture Models with both K-means and EM algorithm parameter estimation',
+            'Feature extraction using 13-dimensional MFCC vectors from speech frames',
+            'Maximum likelihood classification for digit prediction',
+            'Achieved 89.05% accuracy with EM-based GMM on UC Irvine Arabic digit dataset',
+            'Explored phoneme-based cluster count estimation using phonetic analysis',
+            'Investigated covariance structure restrictions and dimension reduction techniques'
           ],
-          technologies: ['Python', 'Machine Learning', 'Signal Processing', 'SciKit-Learn'],
-          github: null
+          technologies: ['Python', 'Gaussian Mixture Models', 'Clustering Algorithms', 'Signal Processing'],
+          github: null,
+          pdf: 'jaeyoung_kil_ece480_project.pdf'
         },
         'this-website': {
           title: 'Portfolio Website',
@@ -189,6 +209,30 @@
             let techTags = project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
             let statusBadge = project.status ? `<span class="status-badge">${project.status}</span>` : '';
             let githubLink = project.github ? `<a href="${project.github}" target="_blank" rel="noopener" class="github-link">View on GitHub →</a>` : '';
+            let pdfLink = project.pdf ? `<a href="${project.pdf}" target="_blank" rel="noopener" class="pdf-link">Read Full Report</a>` : '';
+            let gallerySection = project.gallery ? `
+              <div class="project-gallery">
+                <h4>Gallery:</h4>
+                <div class="gallery-grid">
+                  ${project.gallery.map((item, index) => {
+                    const isVideo = item.src.toLowerCase().includes('.mov') || item.src.toLowerCase().includes('.mp4');
+                    return `
+                      <div class="gallery-item" onclick="openMediaModal('${item.src}', '${item.alt}', ${isVideo})">
+                        ${isVideo ? 
+                          `<video muted preload="metadata" style="pointer-events: none;"><source src="${item.src}" type="video/quicktime"><source src="${item.src}" type="video/mp4"></video><div class="video-overlay">▶</div>` :
+                          `<img src="${item.src}" alt="${item.alt}" />`
+                        }
+                        ${item.caption ? `<p class="gallery-caption">${item.caption}</p>` : ''}
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
+              </div>` : '';
+            let referenceSection = project.reference ? `
+              <div class="project-references">
+                <h4>References:</h4>
+                <p>${project.reference.html}</p>
+              </div>` : '';
             
             modalContent.innerHTML = `
               <h3>${project.title} ${statusBadge}</h3>
@@ -197,11 +241,16 @@
                 <h4>Project Details:</h4>
                 <ul>${detailsList}</ul>
               </div>
+              ${gallerySection}
+              <div class="project-links">
+                ${githubLink}
+                ${pdfLink}
+              </div>
               <div class="technologies">
-                <h4>Technologies Used:</h4>
+                <h4>Tools & Concepts:</h4>
                 <div class="tech-tags">${techTags}</div>
               </div>
-              ${githubLink}
+              ${referenceSection}
             `;
           } else {
             modalContent.innerHTML = `
@@ -349,51 +398,50 @@
           <h2>Featured Projects</h2>
           <div class="projects-grid" id="projectsGrid">
               <div class="project-card" onclick="showProjectModal('matrix-multiplication')">
-                <h3>Matrix Multiplication on FPGA (In&nbsp;Progress)</h3>
-                <p>Systolic array matrix multiplicator in Verilog.</p>
-                <span class="read-more-btn">Read More</span>
+                <h3>Matrix Multiplication on FPGA</h3>
+                <p>FPGA-based systolic array 4x4 matrix multiplier.</p>
+                <span class="read-more-btn">→</span>
               </div>
               
               <div class="project-card" onclick="showProjectModal('frogger-game')">
                 <h3>Frogger Arcade Game on FPGA</h3>
-                <p>Complete arcade game on FPGA with custom CPU design, VGA graphics, joystick input, and PWM audio.</p>
-                <span class="read-more-btn">Read More</span>
+                <p>Classic Frogger arcade game implemented on an FPGA with custom CPU, I/O interface modules, and assembly code for game control.</p>
+                <span class="read-more-btn">→</span>
               </div>
               
               <div class="project-card" onclick="showProjectModal('custom-cpu')">
                 <h3>Custom CPU Design</h3>
-                <p>RISC-style 5-stage pipeline CPU in Verilog with hazard detection and data forwarding.</p>
-                <span class="read-more-btn">Read More</span>
+                <p>5-stage pipelined RISC-style processor with hazard detection and branching.</p>
+                <span class="read-more-btn">→</span>
               </div>
               
               <div class="project-card" onclick="showProjectModal('pcb-design')">
                 <h3>Mixed Signal Board Design</h3>
-                <p>STM32F407 platform with power delivery, motor drivers, ADC, and Ethernet. Multi-layer PCB in KiCAD.</p>
-                <span class="read-more-btn">Read More</span>
-              </div>
-              
-              <div class="project-card" onclick="showProjectModal('graphics-engine')">
-                <h3>2D Graphics Engine</h3>
-                <p>Custom 2D graphics engine in C++ with blending modes and affine transformations.</p>
-                <span class="read-more-btn">Read More</span>
+                <p>STM32F407 mixed-signal PCB with power management, motor control, high-resolution ADC, and Ethernet PHY integration.</p>
+                <span class="read-more-btn">→</span>
               </div>
               
               <div class="project-card" onclick="showProjectModal('ray-tracer')">
                 <h3>Ray Tracer</h3>
-                <p>Ray tracing renderer with realistic lighting, shadows, anti-aliasing.</p>
-                <span class="read-more-btn">Read More</span>
+                <p>Ray tracer with physically-based materials and realistic lighting effects.</p>
+                <span class="read-more-btn">→</span>
+              </div>
+              
+              <div class="project-card" onclick="showProjectModal('graphics-engine')">
+                <h3>2D Graphics Engine</h3>
+                <p>2D graphics engine with custom shaders, Porter-Duff blending, and scanline rasterization.</p>
+                <span class="read-more-btn">→</span>
               </div>
               
               <div class="project-card hidden-project" style="display: none;" onclick="showProjectModal('digit-recognition')">
                 <h3>Spoken Digit Recognition</h3>
-                <p>Machine learning system for spoken digit recognition using audio processing and cluster algorithms.</p>
-                <span class="read-more-btn">Read More</span>
+                <p>GMM-based speech recognition system using MFCC features and maximum likelihood classification.</p>
+                <span class="read-more-btn">→</span>
               </div>
               
-              <div class="project-card hidden-project" style="display: none;" onclick="showProjectModal('this-website')">
-                <h3>And This Website!</h3>
-                <p>Custom-built portfolio website with responsive design, dark/light theme toggle, and clean typography.</p>
-                <span class="read-more-btn">Read More</span>
+              <div class="project-card hidden-project" style="display: none;">
+                <h3>This Website</h3>
+                <p>Portfolio website with responsive design and dark/light modes.</p>
               </div>
               
           </div>
@@ -441,6 +489,18 @@
         <div id="modalContent">
           <!-- Content will be populated by JavaScript -->
         </div>
+      </div>
+    </div>
+
+    <!-- Modal for expanded images and videos -->
+    <div id="imageModal" class="image-modal" style="display: none;">
+      <div class="image-modal-content">
+        <span class="close-image-modal">&times;</span>
+        <img id="expandedImage" src="" alt="" style="display: none;" />
+        <video id="expandedVideo" controls muted style="display: none;">
+          <source src="" type="video/mp4">
+          <source src="" type="video/quicktime">
+        </video>
       </div>
     </div>
 

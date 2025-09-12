@@ -229,7 +229,7 @@ if (viewMoreBtn && projectsGrid) {
       hiddenProjects.forEach(project => {
         project.style.display = 'flex';
       });
-      viewMoreBtn.innerHTML = '<span>View Less Projects</span><span class="arrow">⌃</span>';
+      viewMoreBtn.innerHTML = '<span>View Less Projects</span><span class="arrow css-arrow up"></span>';
       projectsExpanded = true;
     } else {
       // Hide additional projects
@@ -237,7 +237,7 @@ if (viewMoreBtn && projectsGrid) {
       hiddenProjects.forEach(project => {
         project.style.display = 'none';
       });
-      viewMoreBtn.innerHTML = '<span>View More Projects</span><span class="arrow">⌄</span>';
+      viewMoreBtn.innerHTML = '<span>View More Projects</span><span class="arrow css-arrow"></span>';
       projectsExpanded = false;
     }
     // Reposition after showing/hiding projects

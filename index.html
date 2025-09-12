@@ -58,9 +58,9 @@
       const projectData = {
         'matrix-multiplication': {
           title: 'Matrix Multiplication on FPGA',
-          description: 'FPGA-based systolic array 4x4 matrix multiplier.',
+          description: 'FPGA-based systolic array 8x8 matrix multiplier.',
           details: [
-            '16-element processing element array with multiply-accumulate units',
+            '64-element processing element array with multiply-accumulate units',
             'Calculated timing control for skewed data injection patterns',
             'Pipelined data flow with north-south and west-east propagation',
             'Complete controller module with computation state machine',
@@ -83,7 +83,7 @@
           technologies: ['Verilog', 'FPGA', 'Digital Design', 'Assembly', 'Xilinx Vivado'],
           github: null,
           gallery: [
-            { src: 'pics/frogger_gameplay.mov', alt: 'Frogger arcade game gameplay demonstration' }
+            { src: 'pics/frogger_gameplay.mp4', alt: 'Frogger arcade game gameplay demonstration' }
           ]
         },
         'custom-cpu': {
@@ -163,6 +163,42 @@
             url: null
           }
         },
+        'pacman-ai': {
+          title: 'Pacman Reinforcement Learning',
+          description: 'Q-learning agent for Pacman using reinforcement learning with feature extraction and approximate function approximation.',
+          details: [
+            'Q-learning agent with epsilon-greedy exploration and temporal difference updates',
+            'Approximate Q-learning using linear function approximation with feature vectors',
+            'Feature extraction for state-action pairs including food distance and ghost proximity',
+            'Value iteration and policy iteration for Markov Decision Process analysis',
+            'Parameter tuning for learning rate, discount factor, and exploration rate',
+            'Experience replay and weight updates for improved learning convergence'
+          ],
+          technologies: ['Python', 'Q-Learning', 'Reinforcement Learning', 'Feature Engineering'],
+          github: null,
+          gallery: [
+            {
+              src: 'pics/pacman.mp4',
+              alt: 'Pacman Q-learning agent gameplay demonstration',
+              caption: 'Enhanced Q-learning agent hunting scared ghosts for maximum reward'
+            }
+          ]
+        },
+        'vlsi-arithmetic': {
+          title: 'CMOS VLSI Design for Multiplication and Division Modules',
+          description: 'CMOS VLSI design implementing Wallace tree multiplication and non-restoring division for integer arithmetic.',
+          details: [
+            'Design and layout of custom CMOS multiplication and division circuits using Cadence Virtuoso',
+            'Implementation of efficient division algorithms in VLSI',
+            'Transistor-level optimization for speed and power efficiency', 
+            'Layout design following DRC and LVS verification',
+            'Performance analysis and characterization of arithmetic units',
+            'Integration with larger digital system architectures'
+          ],
+          technologies: ['CMOS VLSI', 'Layout Design', 'Cadence Virtuoso'],
+          github: null,
+          status: 'In Progress'
+        },
         'digit-recognition': {
           title: 'Spoken Digit Recognition',
           description: 'GMM-based speech recognition system for digits (0-9) using Mel-Frequency Cepstral Coefficients and maximum likelihood classification.',
@@ -216,8 +252,17 @@
                 <div class="gallery-grid">
                   ${project.gallery.map((item, index) => {
                     const isVideo = item.src.toLowerCase().includes('.mov') || item.src.toLowerCase().includes('.mp4');
+                    const isGameProject = projectId === 'frogger-game' || projectId === 'pacman-ai';
+                    const isGraphicsProject = projectId === 'graphics-engine';
+                    let galleryItemClass = 'gallery-item';
+                    if (isGameProject) {
+                      galleryItemClass += ' gallery-item-tall';
+                    }
+                    if (isGraphicsProject) {
+                      galleryItemClass += ' graphics-project';
+                    }
                     return `
-                      <div class="gallery-item" onclick="openMediaModal('${item.src}', '${item.alt}', ${isVideo})">
+                      <div class="${galleryItemClass}" onclick="openMediaModal('${item.src}', '${item.alt}', ${isVideo})">
                         ${isVideo ? 
                           `<video muted preload="metadata" style="pointer-events: none;"><source src="${item.src}" type="video/quicktime"><source src="${item.src}" type="video/mp4"></video><div class="video-overlay">▶</div>` :
                           `<img src="${item.src}" alt="${item.alt}" />`
@@ -334,7 +379,7 @@
       <section id="about" class="intro-section">
         <div class="container">
           <h2>About Me</h2>
-          <p>I am a senior at Duke University majoring in Electrical & Computer Engineering and Computer Science, with a strong focus on FPGA and ASIC design. My interests lie at the intersection of AI and hardware, from advanced device fabrication to the development of next-generation computing architectures that enable innovative, high-performance solutions.</p>
+          <p>I am a senior at Duke University majoring in Electrical & Computer Engineering and Computer Science, with a strong focus on FPGA and ASIC design. I'm especially interested in the intersection of AI and hardware, exploring how advances in fabrication and architecture can drive more efficient and powerful computing systems.</p>
         </div>
       </section>
 
@@ -397,9 +442,16 @@
         <div class="container">
           <h2>Featured Projects</h2>
           <div class="projects-grid" id="projectsGrid">
+              <div class="project-card" onclick="showProjectModal('vlsi-arithmetic')">
+                <h3>CMOS VLSI Design for Multiplication and Division Modules</h3>
+                <p>CMOS VLSI design implementing Wallace tree multiplication and non-restoring division for integer arithmetic.</p>
+                <span class="status-badge">In Progress</span>
+                <span class="read-more-btn">→</span>
+              </div>
+              
               <div class="project-card" onclick="showProjectModal('matrix-multiplication')">
                 <h3>Matrix Multiplication on FPGA</h3>
-                <p>FPGA-based systolic array 4x4 matrix multiplier.</p>
+                <p>FPGA-based systolic array 8x8 matrix multiplier.</p>
                 <span class="read-more-btn">→</span>
               </div>
               
@@ -427,9 +479,15 @@
                 <span class="read-more-btn">→</span>
               </div>
               
-              <div class="project-card" onclick="showProjectModal('graphics-engine')">
+              <div class="project-card hidden-project" style="display: none;" onclick="showProjectModal('graphics-engine')">
                 <h3>2D Graphics Engine</h3>
                 <p>2D graphics engine with custom shaders, Porter-Duff blending, and scanline rasterization.</p>
+                <span class="read-more-btn">→</span>
+              </div>
+              
+              <div class="project-card hidden-project" style="display: none;" onclick="showProjectModal('pacman-ai')">
+                <h3>Pacman Reinforcement Learning</h3>
+                <p>Q-learning agent for Pacman using reinforcement learning with feature extraction and approximate function approximation.</p>
                 <span class="read-more-btn">→</span>
               </div>
               
@@ -448,7 +506,7 @@
           <div class="view-more-projects">
             <button id="viewMoreBtn" class="view-more-btn">
               <span>View More Projects</span>
-              <span class="arrow">⌄</span>
+              <span class="arrow css-arrow"></span>
             </button>
           </div>
         </div>

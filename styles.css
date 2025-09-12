@@ -622,7 +622,7 @@ section:last-of-type {
   cursor: pointer;
   font-family: inherit;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   transition: all 0.2s ease;
@@ -640,8 +640,27 @@ section:last-of-type {
 }
 
 .view-more-btn .arrow {
-  font-size: 12px;
+  font-size: 16px;
   transition: transform 0.2s ease;
+  line-height: 1;
+  display: inline-block;
+  width: 16px;
+  text-align: center;
+}
+
+.view-more-btn .arrow.css-arrow {
+  font-size: 0;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--white);
+  margin-left: 4px;
+}
+
+.view-more-btn .arrow.css-arrow.up {
+  border-top: none;
+  border-bottom: 8px solid var(--white);
 }
 
 /* Teaching */
@@ -872,15 +891,18 @@ section:last-of-type {
 }
 
 .status-badge {
-  background-color: #f0ad4e;
-  color: white;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 3px 6px;
-  border-radius: 3px;
+  background-color: #ffd700;
+  color: #333;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 15px;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  margin-left: 8px;
+  margin-top: auto;
+  margin-bottom: 8px;
+  align-self: flex-start;
+  display: inline-block;
 }
 
 .github-link {
@@ -999,8 +1021,14 @@ section:last-of-type {
   overflow: hidden;
   transition: transform 0.2s ease;
   cursor: pointer;
-  height: 200px;
+  height: 120px;
+  width: 200px;
   flex: 0 0 auto;
+}
+
+.gallery-item-tall {
+  height: 180px;
+  width: 280px;
 }
 
 .gallery-item:hover {
@@ -1018,6 +1046,11 @@ section:last-of-type {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.gallery-item.graphics-project img {
+  object-fit: contain;
+  background: #f8f8f8;
 }
 
 .video-overlay {

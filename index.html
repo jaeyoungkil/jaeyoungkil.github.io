@@ -194,7 +194,7 @@
         },
         'vlsi-arithmetic': {
           title: 'CMOS VLSI Design for Multiplication and Division Modules',
-          description: 'CMOS VLSI design implementing Wallace tree multiplication and non-restoring division for integer arithmetic.',
+          description: 'CMOS VLSI design implementing Wallace Tree multiplication and non-restoring division for integer arithmetic.',
           details: [
             'Design and layout of custom CMOS multiplication and division circuits using Cadence Virtuoso',
             'Implementation of efficient division algorithms in VLSI',
@@ -272,7 +272,7 @@
                     return `
                       <div class="${galleryItemClass}" onclick="openMediaModal('${item.src}', '${item.alt}', ${isVideo}, '${(item.caption || '').replace(/'/g, '\\\'').replace(/\n/g, '\\n')}')">
                         ${isVideo ? 
-                          `<video muted preload="metadata" style="pointer-events: none;"><source src="${item.src}" type="video/quicktime"><source src="${item.src}" type="video/mp4"></video><div class="video-overlay">▶</div>` :
+                          `<video muted preload="none" style="pointer-events: none;" poster="${item.poster || ''}"><source src="${item.src}" type="video/mp4"><source src="${item.src}" type="video/quicktime"></video><div class="video-overlay">▶</div>` :
                           `<img src="${item.src}" alt="${item.alt}" />`
                         }
                         ${item.caption ? `<p class="gallery-caption">${item.caption}</p>` : ''}
@@ -364,6 +364,7 @@
           <a href="#education">Education</a>
           <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
+          <a href="#research">Research</a>
           <a href="#teaching">Teaching</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -401,12 +402,10 @@
             <div class="education-item">
               <h3>B.S.E. in Electrical&nbsp;and&nbsp;Computer&nbsp;Engineering, B.S. in Computer&nbsp;Science</h3>
               <p class="institution"><strong>Duke University</strong></p>
-              <p class="year">2020 - 2026</p>
+              <p class="year">2020 - 2026 &nbsp;•&nbsp; Leave&nbsp;of&nbsp;Absence:&nbsp;Republic&nbsp;of&nbsp;Korea&nbsp;Army&nbsp;(2021&nbsp;-&nbsp;2023)</p>
               <p class="description"><strong>Relevant Coursework:</strong> Advanced&nbsp;Computer&nbsp;Architecture, CMOS&nbsp;VLSI&nbsp;Design, Operating&nbsp;Systems, Digital&nbsp;Systems, Digital&nbsp;Signal&nbsp;Processing, Microelectronic&nbsp;Circuits&nbsp;&&nbsp;Devices</p>
               <br>
               <p class="description"><strong>Honors:</strong> Tau Beta Pi</p>
-              <br>
-              <p class="description"><strong>Leave&nbsp;of&nbsp;Absence:</strong> Republic&nbsp;of&nbsp;Korea&nbsp;Army (2021 - 2023)</p>
             </div>
           </div>
         </div>
@@ -455,7 +454,7 @@
           <div class="projects-grid" id="projectsGrid">
               <div class="project-card" onclick="showProjectModal('vlsi-arithmetic')">
                 <h3>CMOS VLSI Design for Multiplication and Division Modules</h3>
-                <p>CMOS VLSI design implementing Wallace tree multiplication and non-restoring division for integer arithmetic.</p>
+                <p>CMOS VLSI design implementing Wallace Tree multiplication and non-restoring division for integer arithmetic.</p>
                 <span class="status-badge">In Progress</span>
                 <span class="read-more-btn">→</span>
               </div>
@@ -519,6 +518,27 @@
               <span>View More Projects</span>
               <span class="arrow css-arrow"></span>
             </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="research" class="research-section">
+        <div class="container">
+          <h2>Research</h2>
+          <div class="research-list">
+            <div class="research-item">
+              <h3>Undergraduate Research Assistant - Wang Lab</h3>
+              <p class="institution"><strong>Duke University</strong></p>
+              <p class="year">Spring 2025 - Present</p>
+              <p class="description">Developing machine learning models to predict and optimize CVD MoS₂ synthesis outcomes based on precursor chemistry and process parameters.</p>
+            </div>
+            
+            <div class="research-item">
+              <h3>Summer ML Researcher - Salahshoor Lab</h3>
+              <p class="institution"><strong>Duke University</strong></p>
+              <p class="year">Summer 2024</p>
+              <p class="description">Developed physics-informed neural networks to solve non-convex variational problems using PyTorch to better understand solid-solid phase changes.</p>
+            </div>
           </div>
         </div>
       </section>

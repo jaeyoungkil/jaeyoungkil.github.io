@@ -44,8 +44,9 @@ function openMediaModal(src, alt, isVideo, caption) {
   if (isVideo) {
     expandedImage.style.display = 'none';
     expandedVideo.style.display = 'block';
-    expandedVideo.querySelector('source[type="video/quicktime"]').src = src;
     expandedVideo.querySelector('source[type="video/mp4"]').src = src;
+    expandedVideo.querySelector('source[type="video/quicktime"]').src = src;
+    expandedVideo.preload = 'metadata';
     expandedVideo.load();
     
     // Add specific class for Frogger video

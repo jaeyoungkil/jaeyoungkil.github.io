@@ -35,10 +35,11 @@ if (toTop) {
 }
 
 // Media modal functions
-function openMediaModal(src, alt, isVideo) {
+function openMediaModal(src, alt, isVideo, caption) {
   const imageModal = document.getElementById('imageModal');
   const expandedImage = document.getElementById('expandedImage');
   const expandedVideo = document.getElementById('expandedVideo');
+  const imageCaption = document.getElementById('imageCaption');
   
   if (isVideo) {
     expandedImage.style.display = 'none';
@@ -46,11 +47,26 @@ function openMediaModal(src, alt, isVideo) {
     expandedVideo.querySelector('source[type="video/quicktime"]').src = src;
     expandedVideo.querySelector('source[type="video/mp4"]').src = src;
     expandedVideo.load();
+    
+    // Add specific class for Frogger video
+    if (src.includes('frogger_gameplay')) {
+      expandedVideo.classList.add('frogger-video');
+    } else {
+      expandedVideo.classList.remove('frogger-video');
+    }
   } else {
     expandedVideo.style.display = 'none';
     expandedImage.style.display = 'block';
     expandedImage.src = src;
     expandedImage.alt = alt;
+  }
+  
+  // Handle caption display
+  if (caption && caption.trim()) {
+    imageCaption.textContent = caption;
+    imageCaption.style.display = 'block';
+  } else {
+    imageCaption.style.display = 'none';
   }
   
   imageModal.style.display = 'flex';
@@ -71,8 +87,8 @@ function closeImageModal() {
 }
 
 // Keep the old function for backward compatibility
-function openImageModal(src, alt) {
-  openMediaModal(src, alt, false);
+function openImageModal(src, alt, caption) {
+  openMediaModal(src, alt, false, caption);
 }
 
 // Add event listeners for image modal
@@ -246,5 +262,18 @@ if (viewMoreBtn && projectsGrid) {
 }
 
 // Modal functions are now defined in the HTML file
+
+// Name hover effect with sliding animation
+const nameElement = document.querySelector('.name-hover');
+if (nameElement) {
+  nameElement.addEventListener('mouseenter', () => {
+    nameElement.classList.add('transitioning');
+  });
+  
+  nameElement.addEventListener('mouseleave', () => {
+    nameElement.classList.remove('transitioning');
+  });
+}
+
 
 

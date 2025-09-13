@@ -202,7 +202,7 @@ function isMobile() {
 // Removed problematic mobile project card click functionality
 // Users will need to click the "Read More" buttons directly
 
-// Position view more button to align with rightmost project card
+// Position view more button to align with leftmost project card
 function positionViewMoreButton() {
   const projectsGrid = document.getElementById('projectsGrid');
   const viewMoreBtn = document.getElementById('viewMoreBtn');
@@ -210,21 +210,22 @@ function positionViewMoreButton() {
   if (projectsGrid && viewMoreBtn) {
     const projectCards = projectsGrid.querySelectorAll('.project-card:not(.hidden-project)');
     if (projectCards.length > 0) {
-      // Get the rightmost visible project card
-      let rightmostCard = projectCards[0];
+      // Get the leftmost visible project card
+      let leftmostCard = projectCards[0];
       projectCards.forEach(card => {
-        if (card.offsetLeft + card.offsetWidth > rightmostCard.offsetLeft + rightmostCard.offsetWidth) {
-          rightmostCard = card;
+        if (card.offsetLeft < leftmostCard.offsetLeft) {
+          leftmostCard = card;
         }
       });
       
-      // Position button to align with right edge of rightmost card
+      // Position button to align with left edge of leftmost card
       const gridRect = projectsGrid.getBoundingClientRect();
-      const cardRect = rightmostCard.getBoundingClientRect();
-      const offset = cardRect.right - gridRect.left;
+      const cardRect = leftmostCard.getBoundingClientRect();
+      const cardLeftRelativeToGrid = cardRect.left - gridRect.left;
       
       viewMoreBtn.style.position = 'absolute';
-      viewMoreBtn.style.right = `calc(100% - ${offset}px)`;
+      viewMoreBtn.style.left = `${cardLeftRelativeToGrid}px`;
+      viewMoreBtn.style.right = 'auto';
     }
   }
 }
@@ -263,6 +264,253 @@ if (viewMoreBtn && projectsGrid) {
 }
 
 // Modal functions are now defined in the HTML file
+
+// Project card size control
+document.addEventListener('DOMContentLoaded', function() {
+  const cardSizeSlider = document.getElementById('cardSizeSlider');
+  const projectsGrid = document.getElementById('projectsGrid');
+  
+  // Define the 6 discrete sizes
+  const sizes = [140, 180, 210, 250, 290, 320];
+  
+  if (cardSizeSlider && projectsGrid) {
+    // Update card size function
+    function updateCardSize(sliderValue) {
+      const size = sizes[sliderValue];
+      const cards = projectsGrid.querySelectorAll('.project-card');
+      const hiddenCards = projectsGrid.querySelectorAll('.hidden-project');
+      
+      // Calculate height with aspect ratio (width:height = 10:11, making cards just slightly taller than wide)
+      const height = Math.round(size * 1.1);
+      
+      cards.forEach(card => {
+        card.style.setProperty('width', size + 'px', 'important');
+        card.style.setProperty('min-width', size + 'px', 'important');
+        card.style.setProperty('max-width', size + 'px', 'important');
+        card.style.setProperty('height', height + 'px', 'important');
+        
+        // Show/hide content based on card size
+        const description = card.querySelector('p:not(.status-badge)');
+        const statusBadge = card.querySelector('.status-badge');
+        const readMoreBtn = card.querySelector('.read-more-btn');
+        const title = card.querySelector('h3');
+        
+        // Adjust title font size based on card size (only decrease for 210px and below)
+        if (title) {
+          if (size === 140) {
+            title.style.fontSize = '13px';
+          } else if (size === 180) {
+            title.style.fontSize = '13px';
+          } else if (size === 210) {
+            title.style.fontSize = '14px';
+          } else {
+            // 250px, 290px, 320px keep standard size
+            title.style.fontSize = '16px';
+          }
+        }
+        
+        if (size === 140) {
+          // Smallest cards: show title only with yellow circle for in-progress
+          if (description) description.style.display = 'none';
+          if (statusBadge) statusBadge.style.display = 'none';
+          if (readMoreBtn) readMoreBtn.style.display = 'none';
+          
+          // Add yellow circle for in-progress projects
+          let circle = card.querySelector('.progress-circle');
+          if (statusBadge && statusBadge.textContent.includes('In Progress')) {
+            if (!circle) {
+              circle = document.createElement('div');
+              circle.className = 'progress-circle';
+              circle.style.cssText = `
+                position: absolute;
+                bottom: 12px;
+                left: 12px;
+                width: 13px;
+                height: 13px;
+                background-color: #ffd700;
+                border-radius: 50%;
+                z-index: 10;
+              `;
+              card.appendChild(circle);
+            }
+            circle.style.display = 'block';
+          } else if (circle) {
+            circle.style.display = 'none';
+          }
+        } else if (size <= 210) {
+          // Small cards: show title and status badge only
+          if (description) description.style.display = 'none';
+          if (statusBadge) statusBadge.style.display = 'block';
+          if (readMoreBtn) readMoreBtn.style.display = 'none';
+          // Hide yellow circle at larger sizes
+          let circle = card.querySelector('.progress-circle');
+          if (circle) circle.style.display = 'none';
+        } else if (size <= 250) {
+          // Small cards: show title and status badge only
+          if (description) description.style.display = 'none';
+          if (statusBadge) statusBadge.style.display = 'block';
+          if (readMoreBtn) readMoreBtn.style.display = 'none';
+          // Hide yellow circle at larger sizes
+          let circle = card.querySelector('.progress-circle');
+          if (circle) circle.style.display = 'none';
+        } else {
+          // Larger cards: show all content
+          if (description) description.style.display = 'block';
+          if (statusBadge) statusBadge.style.display = 'block';
+          if (readMoreBtn) readMoreBtn.style.display = 'block';
+          // Hide yellow circle at larger sizes
+          let circle = card.querySelector('.progress-circle');
+          if (circle) circle.style.display = 'none';
+        }
+      });
+      
+      // Show/hide projects based on card size
+      if (size < 250) {
+        // Show all hidden projects when cards are smaller than 250px
+        hiddenCards.forEach(card => {
+          card.style.display = 'flex';
+          card.style.setProperty('width', size + 'px', 'important');
+          card.style.setProperty('height', height + 'px', 'important');
+          
+          // Apply same content hiding logic to hidden cards
+          const description = card.querySelector('p:not(.status-badge)');
+          const statusBadge = card.querySelector('.status-badge');
+          const readMoreBtn = card.querySelector('.read-more-btn');
+          const title = card.querySelector('h3');
+          
+          // Adjust title font size for hidden cards too
+          if (title) {
+            if (size === 140) {
+              title.style.fontSize = '13px';
+            } else if (size === 180) {
+              title.style.fontSize = '13px';
+            } else if (size === 210) {
+              title.style.fontSize = '14px';
+            } else {
+              // 250px, 290px, 320px keep standard size
+              title.style.fontSize = '16px';
+            }
+          }
+          
+          if (size === 140) {
+            if (description) description.style.display = 'none';
+            if (statusBadge) statusBadge.style.display = 'none';
+            if (readMoreBtn) readMoreBtn.style.display = 'none';
+            
+            // Add yellow circle for in-progress hidden projects
+            let circle = card.querySelector('.progress-circle');
+            if (statusBadge && statusBadge.textContent.includes('In Progress')) {
+              if (!circle) {
+                circle = document.createElement('div');
+                circle.className = 'progress-circle';
+                circle.style.cssText = `
+                  position: absolute;
+                  bottom: 12px;
+                  left: 12px;
+                  width: 13px;
+                  height: 13px;
+                  background-color: #ffd700;
+                  border-radius: 50%;
+                  z-index: 10;
+                `;
+                card.appendChild(circle);
+              }
+              circle.style.display = 'block';
+            } else if (circle) {
+              circle.style.display = 'none';
+            }
+          } else if (size <= 210) {
+            if (description) description.style.display = 'none';
+            if (statusBadge) statusBadge.style.display = 'block';
+            if (readMoreBtn) readMoreBtn.style.display = 'none';
+            let circle = card.querySelector('.progress-circle');
+            if (circle) circle.style.display = 'none';
+          } else if (size <= 250) {
+            if (description) description.style.display = 'none';
+            if (statusBadge) statusBadge.style.display = 'block';
+            if (readMoreBtn) readMoreBtn.style.display = 'none';
+            let circle = card.querySelector('.progress-circle');
+            if (circle) circle.style.display = 'none';
+          } else {
+            if (description) description.style.display = 'block';
+            if (statusBadge) statusBadge.style.display = 'block';
+            if (readMoreBtn) readMoreBtn.style.display = 'block';
+            let circle = card.querySelector('.progress-circle');
+            if (circle) circle.style.display = 'none';
+          }
+        });
+      } else if (size === 250) {
+        // At 250px, show only first two hidden projects (Graphics Engine and Pacman)
+        hiddenCards.forEach((card, index) => {
+          if (index < 2) {
+            card.style.display = 'flex';
+            card.style.setProperty('width', size + 'px', 'important');
+            card.style.setProperty('height', height + 'px', 'important');
+            
+            // Apply content logic - hide description at 250px
+            const description = card.querySelector('p:not(.status-badge)');
+            const statusBadge = card.querySelector('.status-badge');
+            const readMoreBtn = card.querySelector('.read-more-btn');
+            const title = card.querySelector('h3');
+            
+            // Set font size for 250px cards
+            if (title) {
+              title.style.fontSize = '16px';
+            }
+            
+            if (description) description.style.display = 'none';
+            if (statusBadge) statusBadge.style.display = 'block';
+            if (readMoreBtn) readMoreBtn.style.display = 'none';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      } else {
+        // Hide all additional projects when cards are larger than 250px
+        hiddenCards.forEach(card => {
+          card.style.display = 'none';
+        });
+      }
+      
+      // Update grid template to accommodate new size
+      const minSize = Math.max(size - 20, 100);
+      projectsGrid.style.gridTemplateColumns = `repeat(auto-fit, minmax(${minSize}px, ${size}px))`;
+      
+      // Update displayed value (removed - no longer showing pixel values)
+      
+      // Store preference (store the slider index, not the size)
+      localStorage.setItem('projectCardSizeIndex', sliderValue);
+      
+      // Hide/show the "View More" button based on card size
+      const viewMoreBtn = document.getElementById('viewMoreBtn');
+      if (viewMoreBtn) {
+        if (size < 250) {
+          viewMoreBtn.style.display = 'none';
+        } else {
+          viewMoreBtn.style.display = 'flex';
+        }
+      }
+      
+      // Reposition the "View More" button to align with rightmost card
+      setTimeout(positionViewMoreButton, 10);
+    }
+    
+    // Slider event listener
+    cardSizeSlider.addEventListener('input', function() {
+      updateCardSize(parseInt(this.value));
+    });
+    
+    // Load saved preference or use default
+    const savedIndex = localStorage.getItem('projectCardSizeIndex');
+    if (savedIndex && savedIndex >= 0 && savedIndex <= 5) {
+      cardSizeSlider.value = savedIndex;
+      updateCardSize(parseInt(savedIndex));
+    } else {
+      // Default to middle size (250px, index 3)
+      updateCardSize(3);
+    }
+  }
+});
 
 
 

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jaeyoung Kil</title>
+    <meta name="description" content="Portfolio of Jaeyoung Kil" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <script>
+      function toggleTheme() {
+        console.log('toggleTheme called');
+        const body = document.body;
+        const sunIcon = document.querySelectorAll('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+        const currentTheme = body.getAttribute('data-theme');
+        
+        if (currentTheme === 'dark') {
+          body.removeAttribute('data-theme');
+          // Show moon icon (in light mode, click to go to dark)
+          sunIcon.forEach(icon => icon.style.display = 'none');
+          moonIcon.style.display = 'block';
+          localStorage.setItem('theme', 'light');
+          console.log('Switched to light theme');
+        } else {
+          body.setAttribute('data-theme', 'dark');
+          // Show sun icon (in dark mode, click to go to light)
+          sunIcon.forEach(icon => icon.style.display = 'block');
+          moonIcon.style.display = 'none';
+          localStorage.setItem('theme', 'dark');
+          console.log('Switched to dark theme');
+        }
+        
+        // Update name link with new theme
+        updateNameLink();
+      }
+
+      // Update name link with current theme
+      function updateNameLink() {
+        const nameLink = document.getElementById('nameLink');
+        const currentTheme = document.body.getAttribute('data-theme');
+        if (nameLink) {
+          if (currentTheme === 'dark') {
+            nameLink.href = 'index.html?theme=dark';
+          } else {
+            nameLink.href = 'index.html?theme=light';
+          }
+        }
+      }
+
+      // Restore saved theme on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        const body = document.body;
+        const sunIcon = document.querySelectorAll('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+        
+        if (savedTheme === 'dark') {
+          body.setAttribute('data-theme', 'dark');
+          // Show sun icon (in dark mode, click to go to light)
+          sunIcon.forEach(icon => icon.style.display = 'block');
+          moonIcon.style.display = 'none';
+        } else {
+          // Show moon icon (in light mode, click to go to dark)
+          sunIcon.forEach(icon => icon.style.display = 'none');
+          moonIcon.style.display = 'block';
+        }
+        
+        // Update name link
+        updateNameLink();
+      });
+
+      // Project content data
+      const projectData = {
+        'matrix-multiplication': {
+          title: 'Matrix Multiplication on FPGA',
+          description: 'FPGA-based systolic array 8x8 matrix multiplier implemented in SystemVerilog.',
+          details: [
+            '64-element processing element array with multiply-accumulate units',
+            'Calculated timing control for skewed data injection patterns',
+            'Pipelined data flow with north-south and west-east propagation',
+            'Complete controller module with computation state machine',
+            'Testbench with verification framework and GTKWave debugging'
+          ],
+          technologies: ['SystemVerilog', 'FPGA', 'Systolic Arrays'],
+          github: null,
+          gallery: [
+            {
+              src: 'pics/mult_gtk.png',
+              alt: 'GTKWave simulation of 8x8 matrix multiplier',
+              caption: 'GTKWave waveform showing functional verification of the 8x8 systolic array matrix multiplier. Demonstrates one cycle propagation delay for adjacent matrix elements and two cycle delay between diagonal elements, verifying the skewed data injection timing for optimal systolic array operation.\n\nThe c array represents the matrix computation result, and the cij signal represents the c_ij element of the matrix.'
+            }
+          ]
+        },
+        'frogger-game': {
+          title: 'Frogger Arcade Game on FPGA',
+          description: 'Classic Frogger arcade game implemented on an FPGA with custom CPU, I/O interface modules, and assembly code for game control.',
+          details: [
+            'Built on custom 5-stage pipelined CPU with MMIO interface',
+            'VGA controller module for 640x480 display with timing generation',
+            'PWM audio controller with frequency serialization for game sounds',
+            'Sprite rendering system with dedicated image and color memory modules',
+            'Assembly language game logic with hardware-software integration',
+            'Game features include collision detection, game timer, life counts, and restarts'
+          ],
+          technologies: ['Verilog', 'FPGA', 'Digital Design', 'Assembly', 'Xilinx Vivado'],
+          github: null,
+          gallery: [
+            { src: 'pics/frogger_gameplay.mp4', alt: 'Frogger arcade game gameplay demonstration' }
+          ]
+        },
+        'custom-cpu': {
+          title: 'Custom CPU Design',
+          description: '5-stage pipelined RISC-style processor with hazard detection and branching.',
+          details: [
+            '5-stage pipeline with hazard detection and data forwarding',
+            'Integrated multiply/divide unit with stall control',
+            'Exception handling for arithmetic overflow and divide-by-zero',
+            'Used Xilinx Vivado to synthesize on Nexys A7-100T FPGA board',
+            'Performed timing analysis and achieved clock frequency of 50MHz',
+            'Extensive debugging and verification using GTKWave waveform analysis'
+          ],
+          technologies: ['Verilog', 'Xilinx Vivado', 'FPGA', 'Computer Architecture'],
+          github: null
+        },
+        'pcb-design': {
+          title: 'Mixed Signal Board Design',
+          description: 'STM32F407 mixed-signal PCB with power management, motor control, high-resolution ADC, and Ethernet PHY integration.',
+          details: [
+            'STM32F407 microcontroller system with peripheral interfaces (USART, I²C, SPI)',
+            'Multi-rail power distribution with DC-DC converters and LDO regulators',
+            'Motor driver circuits using MOSFET H-bridge topology with thermal management',
+            'High-resolution ADC design (12/16/18-bit) with microphone sensitivity optimization',
+            'Ethernet PHY/ESD/EMI protection with 10/100/1000Mbps support and noise filtering',
+            'Multi-layer PCB layout with controlled impedance routing and EMI/EMC compliance',
+            'Schematic design including power trees, clock distribution, and protection circuits',
+            '3D PCB modeling and pre-production analysis for thermal considerations'
+          ],
+          technologies: ['KiCAD', 'PCB Design', 'STM32F407', 'Mixed-Signal Design', 'Power Electronics', 'EMI/EMC'],
+          github: null
+        },
+        'graphics-engine': {
+          title: '2D Graphics Engine',
+          description: '2D graphics engine with custom shaders, Porter-Duff blending, and scanline rasterization.',
+          details: [
+            'Custom canvas implementation with pixel-level drawing control',
+            'Porter-Duff compositing with 12 blend modes for layering effects',
+            'Matrix transformations for coordinate system manipulation',
+            'Path and polygon rendering with arbitrary shape support',
+            'Shader system supporting textures, gradients, and patterns',
+            'Triangle mesh rendering with barycentric coordinate interpolation',
+            'Quadrilateral texture mapping using bilinear interpolation',
+            'Scanline rasterization for efficient pixel filling'
+          ],
+          technologies: ['C++', 'Computer Graphics', 'Rasterization', 'Linear Algebra'],
+          github: null,
+          gallery: [
+            { src: 'pics/graphics_1.png', alt: 'Triangle mesh rendering with textures' },
+            { src: 'pics/graphics_2.png', alt: 'Path rendering with star shapes' },
+            { src: 'pics/graphics_3.png', alt: 'Gradient shaders with blend modes' },
+            { src: 'pics/graphics_4.png', alt: 'Stroke path generation' },
+            { src: 'pics/graphics_5.png', alt: 'Voronoi shader pattern' },
+            { src: 'pics/graphics_6.png', alt: 'Spock image with quadrilateral rendering' }
+          ]
+        },
+        'ray-tracer': {
+          title: 'Ray Tracer',
+          description: 'Ray tracer with physically-based materials and realistic lighting effects.',
+          details: [
+            'Ray-sphere and ray-plane intersection calculations',
+            'Physically-based materials: Lambertian, metallic, and dielectric surfaces',
+            'Realistic depth of field and defocus blur effects',
+            'Anti-aliasing through random sampling',
+            'Global illumination with recursive ray bouncing',
+            'Sphere primitives with surface normal calculations',
+            'PPM image format output'
+          ],
+          technologies: ['C++', 'Computer Graphics'],
+          github: null,
+          gallery: [
+            { src: 'pics/ray_1.png', alt: 'Ray traced scene 1' },
+            { src: 'pics/ray_2.png', alt: 'Ray traced scene 2' },
+            { src: 'pics/ray_3.png', alt: 'Ray traced scene 3' }
+          ],
+          reference: {
+            html: '<a href="https://raytracing.github.io/books/RayTracingTheRestOfYourLife.html" target="_blank" rel="noopener"><cite>Ray Tracing: The Rest of Your Life</cite></a>',
+            url: null
+          }
+        },
+        'pacman-ai': {
+          title: 'Pacman Reinforcement Learning',
+          description: 'Q-learning agent for Pacman using reinforcement learning with feature extraction and approximate function approximation.',
+          details: [
+            'Q-learning agent with epsilon-greedy exploration and temporal difference updates',
+            'Approximate Q-learning using linear function approximation with feature vectors',
+            'Feature extraction for state-action pairs including food distance and ghost proximity',
+            'Value iteration and policy iteration for Markov Decision Process analysis',
+            'Parameter tuning for learning rate, discount factor, and exploration rate',
+            'Experience replay and weight updates for improved learning convergence'
+          ],
+          technologies: ['Python', 'Q-Learning', 'Reinforcement Learning', 'Feature Engineering'],
+          github: null,
+          gallery: [
+            {
+              src: 'pics/pacman.mp4',
+              alt: 'Pacman Q-learning agent gameplay demonstration',
+              caption: 'Enhanced Q-learning agent hunting scared ghosts for maximum reward'
+            }
+          ]
+        },
+        'vlsi-arithmetic': {
+          title: 'CMOS VLSI Design for Multiplication and Division Modules',
+          description: 'CMOS VLSI design implementing Wallace Tree multiplication and non-restoring division for integer arithmetic.',
+          details: [
+            'Design and layout of custom CMOS multiplication and division circuits using Cadence Virtuoso',
+            'Implementation of efficient division algorithms in VLSI',
+            'Transistor-level optimization for speed and power efficiency', 
+            'Layout design following DRC and LVS verification',
+            'Performance analysis and characterization of arithmetic units',
+            'Integration with larger digital system architectures'
+          ],
+          technologies: ['CMOS VLSI', 'Layout Design', 'Cadence Virtuoso'],
+          github: null,
+          status: 'In Progress'
+        },
+        'digit-recognition': {
+          title: 'Spoken Digit Recognition',
+          description: 'GMM-based speech recognition system for digits (0-9) using Mel-Frequency Cepstral Coefficients and maximum likelihood classification.',
+          details: [
+            'Implemented Gaussian Mixture Models with both K-means and EM algorithm parameter estimation',
+            'Feature extraction using 13-dimensional MFCC vectors from speech frames',
+            'Maximum likelihood classification for digit prediction',
+            'Achieved 89.05% accuracy with EM-based GMM on UC Irvine Arabic digit dataset',
+            'Explored phoneme-based cluster count estimation using phonetic analysis',
+            'Investigated covariance structure restrictions and dimension reduction techniques'
+          ],
+          technologies: ['Python', 'Gaussian Mixture Models', 'Clustering Algorithms', 'Signal Processing'],
+          github: null,
+          pdf: 'jaeyoung_kil_ece480_project.pdf'
+        },
+        'this-website': {
+          title: 'Portfolio Website',
+          description: 'This responsive portfolio website built with modern web technologies and design principles.',
+          details: [
+            'Responsive design for all device sizes',
+            'Dark/light theme toggle with persistence',
+            'Clean, professional typography system',
+            'CSS Grid layout for precise positioning',
+            'Smooth animations and transitions',
+            'Semantic HTML for accessibility',
+            'Optimized for performance and SEO'
+          ],
+          technologies: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'UX/UI'],
+          github: 'https://github.com/jaeyoungkil/jaeyoungkil.github.io'
+        }
+      };
+
+      // Modal functions - must be in HTML for inline onclick handlers
+      function showProjectModal(projectId) {
+        console.log('showProjectModal called with:', projectId);
+        const modal = document.getElementById('projectModal');
+        const modalContent = document.getElementById('modalContent');
+        
+        if (modal && modalContent) {
+          const project = projectData[projectId];
+          if (project) {
+            // Generate modal content
+            let detailsList = project.details.map(detail => `<li>${detail}</li>`).join('');
+            let techTags = project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
+            let statusBadge = project.status ? `<span class="status-badge">${project.status}</span>` : '';
+            let githubLink = project.github ? `<a href="${project.github}" target="_blank" rel="noopener" class="github-link">View on GitHub →</a>` : '';
+            let pdfLink = project.pdf ? `<a href="${project.pdf}" target="_blank" rel="noopener" class="pdf-link">Read Full Report</a>` : '';
+            let gallerySection = project.gallery ? `
+              <div class="project-gallery">
+                <h4>Gallery:</h4>
+                <div class="gallery-grid">
+                  ${project.gallery.map((item, index) => {
+                    const isVideo = item.src.toLowerCase().includes('.mov') || item.src.toLowerCase().includes('.mp4');
+                    const isGameProject = projectId === 'frogger-game' || projectId === 'pacman-ai';
+                    const isGraphicsProject = projectId === 'graphics-engine';
+                    let galleryItemClass = 'gallery-item';
+                    if (isGameProject) {
+                      galleryItemClass += ' gallery-item-tall';
+                    }
+                    if (isGraphicsProject) {
+                      galleryItemClass += ' graphics-project';
+                    }
+                    return `
+                      <div class="${galleryItemClass}" onclick="openMediaModal('${item.src}', '${item.alt}', ${isVideo}, '${(item.caption || '').replace(/'/g, '\\\'').replace(/\n/g, '\\n')}')">
+                        ${isVideo ? 
+                          `<video muted preload="none" style="pointer-events: none;" poster="${item.poster || ''}"><source src="${item.src}" type="video/mp4"><source src="${item.src}" type="video/quicktime"></video><div class="video-overlay">▶</div>` :
+                          `<img src="${item.src}" alt="${item.alt}" />`
+                        }
+                        ${item.caption ? `<p class="gallery-caption">${item.caption}</p>` : ''}
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
+              </div>` : '';
+            let referenceSection = project.reference ? `
+              <div class="project-references">
+                <h4>References:</h4>
+                <p>${project.reference.html}</p>
+              </div>` : '';
+            
+            modalContent.innerHTML = `
+              <h3>${project.title} ${statusBadge}</h3>
+              <p class="project-description">${project.description}</p>
+              <div class="project-details">
+                <h4>Project Details:</h4>
+                <ul>${detailsList}</ul>
+              </div>
+              ${gallerySection}
+              <div class="project-links">
+                ${githubLink}
+                ${pdfLink}
+              </div>
+              <div class="technologies">
+                <h4>Tools & Concepts:</h4>
+                <div class="tech-tags">${techTags}</div>
+              </div>
+              ${referenceSection}
+            `;
+          } else {
+            modalContent.innerHTML = `
+              <h3>Project Not Found</h3>
+              <p>Sorry, the details for this project are not available.</p>
+            `;
+          }
+          
+          modal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+          console.log('Modal opened successfully');
+        } else {
+          console.log('ERROR: Modal element not found!');
+        }
+      }
+
+      function closeProjectModal() {
+        console.log('closeProjectModal called');
+        const modal = document.getElementById('projectModal');
+        if (modal) {
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+          console.log('Modal closed');
+        }
+      }
+
+      // Close modal when clicking outside or X button
+      document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('projectModal');
+        const closeBtn = document.querySelector('.close-modal');
+        
+        console.log('DOM loaded. Modal found:', !!modal);
+        console.log('Close button found:', !!closeBtn);
+        
+        if (closeBtn) {
+          closeBtn.addEventListener('click', closeProjectModal);
+        }
+        
+        if (modal) {
+          modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+              closeProjectModal();
+            }
+          });
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1><a href="index.html" class="name-link" id="nameLink">Jaeyoung Kil</a></h1>
+        <nav class="nav">
+          <a href="#about">About</a>
+          <a href="#education">Education</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#research">Research</a>
+          <a href="#teaching">Teaching</a>
+        </nav>
+        <div class="header-controls">
+          <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+          <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
+            <svg class="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <!-- Sun icon (shows in dark mode to switch to light) -->
+              <circle class="sun-icon" cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="currentColor" style="display: none;"/>
+              <path class="sun-icon" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" style="display: none;"/>
+              <!-- Moon icon (shows in light mode to switch to dark) -->
+              <path class="moon-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="about" class="intro-section">
+        <div class="container">
+          <h2>About Me</h2>
+          <p>I am a senior at Duke University majoring in Electrical & Computer Engineering and Computer Science, with a strong focus on FPGA and ASIC design. I'm especially interested in the intersection of AI and hardware, exploring how advances in fabrication and architecture can drive more powerful computing systems.</p>
+          <div class="contact-info">
+            <p>
+              <strong>Contact:</strong> Email me at <a href="mailto:jaeyoung.kil@duke.edu">jaeyoung.kil@duke.edu</a>
+              or find me on <a href="https://www.linkedin.com/in/jaeyoung-kil/" target="_blank" rel="noreferrer noopener">LinkedIn</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="education-section">
+        <div class="container">
+          <h2>Education</h2>
+          <div class="education-list">
+            <div class="education-item">
+              <h3>B.S.E. in Electrical&nbsp;and&nbsp;Computer&nbsp;Engineering, B.S. in Computer&nbsp;Science</h3>
+              <p class="institution"><strong>Duke University</strong></p>
+              <p class="year">2020 - 2026 &nbsp;•&nbsp; Leave&nbsp;of&nbsp;Absence:&nbsp;Republic&nbsp;of&nbsp;Korea&nbsp;Army&nbsp;(2021&nbsp;-&nbsp;2023)</p>
+              <p class="description"><strong>Relevant Coursework:</strong> Advanced&nbsp;Computer&nbsp;Architecture, CMOS&nbsp;VLSI&nbsp;Design, Operating&nbsp;Systems, Digital&nbsp;Systems, Digital&nbsp;Signal&nbsp;Processing, Microelectronic&nbsp;Circuits&nbsp;&&nbsp;Devices</p>
+              <br>
+              <p class="description"><strong>Honors:</strong> Tau Beta Pi</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="skills-section">
+        <div class="container">
+          <h2>Skills</h2>
+          <div class="skills-list">
+            <div class="skill-category">
+              <h3>Programming Languages</h3>
+              <p>C/C++, Python, Java, MIPS/Assembly, SQL, R,&nbsp;MATLAB</p>
+            </div>
+            
+            <div class="skill-category">
+              <h3>EDA</h3>
+              <p>Cadence Virtuoso, Xilinx Vivado</p>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Hardware Description Languages</h3>
+              <p>Verilog, VHDL, SystemVerilog</p>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Circuit Design & Simulation</h3>
+              <p>PSpice, KiCAD, Cadence Allegro, Altium, LabVIEW</p>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Machine Learning & Development</h3>
+              <p>PyTorch, TensorFlow, Git, Docker, AWS</p>
+            </div>
+            
+            <div class="skill-category">
+              <h3>Computer Architecture & Simulation</h3>
+              <p>Gem5, SPEC Benchmarks</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="projects-section">
+        <div class="container">
+          <h2>Featured Projects</h2>
+          <div class="projects-grid" id="projectsGrid">
+              <div class="project-card" onclick="showProjectModal('vlsi-arithmetic')">
+                <h3>CMOS VLSI Design for Multiplication and Division Modules</h3>
+                <p>CMOS VLSI design implementing Wallace Tree multiplication and non-restoring division for integer arithmetic.</p>
+                <span class="status-badge">In Progress</span>
+                <span class="read-more-btn">→</span>
+              </div>
+              
+              <div class="project-card" onclick="showProjectModal('matrix-multiplication')">
+                <h3>Matrix Multiplication on FPGA</h3>
+                <p>FPGA-based systolic array 8x8 matrix multiplier implemented in SystemVerilog.</p>
+                <span class="read-more-btn">→</span>
+              </div>
+              
+              <div class="project-card" onclick="showProjectModal('frogger-game')">
+                <h3>Frogger Arcade Game on FPGA</h3>
+                <p>Classic Frogger arcade game implemented on an FPGA with custom CPU, I/O interface modules, and assembly code for game control.</p>
+                <span class="read-more-btn">→</span>
+              </div>
+              
+              <div class="project-card" onclick="showProjectModal('custom-cpu')">
+                <h3>Custom CPU Design</h3>
+                <p>5-stage pipelined RISC-style processor with hazard detection and branching.</p>
+                <span class="read-more-btn">→</span>
+              </div>
+              
+              <div class="project-card" onclick="showProjectModal('pcb-design')">
+                <h3>Mixed Signal Board Design</h3>
+                <p>STM32F407 mixed-signal PCB with power management, motor control, high-resolution ADC, and Ethernet PHY integration.</p>
+                <span class="read-more-btn">→</span>
+              </div>
+              
+              <div class="project-card" onclick="showProjectModal('ray-tracer')">
+                <h3>Ray Tracer</h3>
+                <p>Ray tracer with physically-based materials and realistic lighting effects.</p>
+                <span class="read-more-btn">→</span>
+              </div>
+              
+              <div class="project-card hidden-project" style="display: none;" onclick="showProjectModal('graphics-engine')">
+                <h3>2D Graphics Engine</h3>
+                <p>2D graphics engine with custom shaders, Porter-Duff blending, and scanline rasterization.</p>
+                <span class="read-more-btn">→</span>
+              </div>
+              
+              <div class="project-card hidden-project" style="display: none;" onclick="showProjectModal('pacman-ai')">
+                <h3>Pacman Reinforcement Learning</h3>
+                <p>Q-learning agent for Pacman using reinforcement learning with feature extraction and approximate function approximation.</p>
+                <span class="read-more-btn">→</span>
+              </div>
+              
+              <div class="project-card hidden-project" style="display: none;" onclick="showProjectModal('digit-recognition')">
+                <h3>Spoken Digit Recognition</h3>
+                <p>GMM-based speech recognition system using MFCC features and maximum likelihood classification.</p>
+                <span class="read-more-btn">→</span>
+              </div>
+              
+              <div class="project-card hidden-project" style="display: none;">
+                <h3>This Website</h3>
+                <p>Portfolio website with responsive design and dark/light modes.</p>
+              </div>
+              
+          </div>
+          <div class="view-more-projects">
+            <button id="viewMoreBtn" class="view-more-btn">
+              <span>View More Projects</span>
+              <span class="arrow css-arrow"></span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="research" class="research-section">
+        <div class="container">
+          <h2>Research</h2>
+          <div class="research-list">
+            <div class="research-item">
+              <h3>Undergraduate Research Assistant - Wang Lab</h3>
+              <p class="institution"><strong>Duke University</strong></p>
+              <p class="year">Spring 2025 - Present</p>
+              <p class="description">Developing machine learning models to predict and optimize CVD MoS₂ synthesis outcomes based on precursor chemistry and process parameters.</p>
+            </div>
+            
+            <div class="research-item">
+              <h3>Summer ML Researcher - Salahshoor Lab</h3>
+              <p class="institution"><strong>Duke University</strong></p>
+              <p class="year">Summer 2024</p>
+              <p class="description">Developed physics-informed neural networks to solve non-convex variational problems using PyTorch to better understand solid-solid phase changes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="teaching" class="teaching-section">
+        <div class="container">
+          <h2>Teaching</h2>
+          <div class="teaching-list">
+            <div class="teaching-item">
+              <h3>ECE 331 TA - Fundamentals of Microelectronic Circuits</h3>
+              <p class="year">Fall 2025</p>
+            </div>
+            
+            <div class="teaching-item">
+              <h3>ECE 230 TA - Intro to Microelectronic Devices & Circuits</h3>
+              <p class="year">Spring 2025</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>© 2025 Jaeyoung Kil • Last updated: September 2025</p>
+          <div class="social-links">
+            <a href="mailto:jaeyoung.kil@duke.edu" aria-label="Email">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/jaeyoung-kil/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            <a href="https://github.com/jaeyoungkil" target="_blank" rel="noreferrer noopener" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal for project details -->
+    <div id="projectModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div id="modalContent">
+          <!-- Content will be populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for expanded images and videos -->
+    <div id="imageModal" class="image-modal" style="display: none;">
+      <div class="image-modal-content">
+        <span class="close-image-modal">&times;</span>
+        <img id="expandedImage" src="" alt="" style="display: none;" />
+        <video id="expandedVideo" controls muted style="display: none;">
+          <source src="" type="video/mp4">
+          <source src="" type="video/quicktime">
+        </video>
+        <p id="imageCaption" class="image-caption" style="display: none;"></p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+  </html>
+
+

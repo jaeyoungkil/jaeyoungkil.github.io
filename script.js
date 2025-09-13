@@ -264,17 +264,6 @@ if (viewMoreBtn && projectsGrid) {
 
 // Modal functions are now defined in the HTML file
 
-// Name hover effect with sliding animation
-const nameElement = document.querySelector('.name-hover');
-if (nameElement) {
-  nameElement.addEventListener('mouseenter', () => {
-    nameElement.classList.add('transitioning');
-  });
-  
-  nameElement.addEventListener('mouseleave', () => {
-    nameElement.classList.remove('transitioning');
-  });
-}
 
 
 

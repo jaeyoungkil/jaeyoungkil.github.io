@@ -550,6 +550,61 @@ section:last-of-type {
 }
 
 @media (max-width: 768px) {
+  /* Mobile font scaling */
+  body {
+    font-size: 16px;
+  }
+  
+  .site-header h1 {
+    font-size: 16px;
+  }
+  
+  .intro-section p {
+    font-size: 18px !important;
+  }
+  
+  .contact-info p {
+    font-size: 14px !important;
+  }
+  
+  section h2 {
+    font-size: 14px !important;
+  }
+  
+  .education-item h3,
+  .skill-category h3,
+  .teaching-item h3,
+  .research-item h3 {
+    font-size: 14px !important;
+  }
+  
+  .education-item .description,
+  .research-item .description,
+  .teaching-item .description,
+  .skill-category p {
+    font-size: 13px !important;
+  }
+  
+  .project-card h3 {
+    font-size: 14px !important;
+  }
+  
+  .project-card p {
+    font-size: 12px !important;
+  }
+  
+  .read-more-btn {
+    font-size: 10px !important;
+  }
+  
+  .view-more-btn {
+    font-size: 11px !important;
+  }
+  
+  .site-footer p {
+    font-size: 12px !important;
+  }
+  
   .social-links {
     position: static;
     transform: none;

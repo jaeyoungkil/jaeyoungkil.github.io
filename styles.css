@@ -360,6 +360,10 @@ section {
     margin-top: calc(var(--grid-unit) * 2);
   }
   
+  .research-list {
+    margin-top: calc(var(--grid-unit) * 2);
+  }
+
   .teaching-list {
     margin-top: calc(var(--grid-unit) * 2);
   }

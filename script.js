@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 left: 12px;
                 width: 13px;
                 height: 13px;
-                background-color: #ffd700;
+                background-color: #6c757d;
                 border-radius: 50%;
                 z-index: 10;
               `;
@@ -409,7 +409,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   left: 12px;
                   width: 13px;
                   height: 13px;
-                  background-color: #ffd700;
+                  background-color: #6c757d;
                   border-radius: 50%;
                   z-index: 10;
                 `;

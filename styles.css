@@ -1,8 +1,8 @@
 :root {
   /* Light theme (default) */
-  --white: #fffdf0;
+  --white: #ffffff;
   --black: #000000;
-  --gray-light: #faf8e8;
+  --gray-light: #f8f9fa;
   --gray-medium: #666666;
   --gray-dark: #333333;
   --grid-unit: 24px;
@@ -11,9 +11,9 @@
 
 [data-theme="dark"] {
   /* Dark theme */
-  --white: #2a2a2b;
-  --black: #f5f5dc;
-  --gray-light: #3a3a3b;
+  --white: #1a1a1a;
+  --black: #ffffff;
+  --gray-light: #2d2d2d;
   --gray-medium: #b8b8b8;
   --gray-dark: #e0e0e0;
 }
@@ -1264,7 +1264,7 @@ section:last-of-type {
 }
 
 .status-badge {
-  background-color: #f0d040;
+  background-color: #e9ecef;
   color: #333;
   font-size: 11px;
   font-weight: 500;

@@ -222,19 +222,18 @@
           ]
         },
         'vlsi-arithmetic': {
-          title: 'CMOS VLSI Design for Multiplication and Division Modules',
-          description: 'CMOS VLSI design implementing Wallace Tree multiplication and non-restoring division for integer arithmetic.',
+          title: 'TensorFloat32 Dadda Tree Multiplier in CMOS VLSI',
+          description: 'CMOS VLSI implementation of a high-speed Dadda tree multiplier optimized for TensorFloat32 arithmetic operations.',
           details: [
-            'Design and layout of custom CMOS multiplication and division circuits using Cadence Virtuoso',
-            'Implementation of efficient division algorithms in VLSI',
-            'Transistor-level optimization for speed and power efficiency', 
-            'Layout design following DRC and LVS verification',
-            'Performance analysis and characterization of arithmetic units',
-            'Integration with larger digital system architectures'
+            'Designed and implemented Dadda tree reduction structure for TensorFloat32 format multiplication',
+            'Custom CMOS circuit design and layout using Cadence Virtuoso with 65nm PDK',
+            'Achieved timing closure through critical path optimization and transistor sizing',
+            'Managed routing congestion and power considerations in physical implementation',
+            'Layout design with complete DRC and LVS verification',
+            'Performance characterization including timing, power, and area analysis'
           ],
-          technologies: ['CMOS VLSI', 'Layout Design', 'Cadence Virtuoso'],
-          github: null,
-          status: 'In Progress'
+          technologies: ['CMOS VLSI', 'Cadence Virtuoso', '65nm PDK', 'Dadda Tree', 'TensorFloat32'],
+          github: null
         },
         'digit-recognition': {
           title: 'Spoken Digit Recognition',
@@ -416,7 +415,7 @@
       <section id="about" class="intro-section">
         <div class="container">
           <h2>About Me</h2>
-          <p>I am a senior at Duke University majoring in Electrical & Computer Engineering and Computer Science. My studies and projects have centered on VLSI and FPGA design, while also extending into computer architecture and hardware–software co-design. I am particularly interested in how innovations in hardware and AI can reinforce one another, using advances in fabrication and architecture to build computing platforms.</p>
+          <p>I am a senior at Duke University studying Electrical & Computer Engineering and Computer Science. I am passionate about VLSI design, accelerator architectures, and hardware–software co-design. I'm especially interested in cross-layer approaches that connect device behavior, circuit implementation, and system-level architecture to build efficient, well-integrated specialized hardware.</p>
           <div class="contact-info">
             <p>
               <strong>Contact:</strong> Email me at <a href="mailto:jaeyoung.kil@duke.edu">jaeyoung.kil@duke.edu</a>
@@ -488,9 +487,8 @@
           </div>
           <div class="projects-grid" id="projectsGrid">
               <div class="project-card" onclick="showProjectModal('vlsi-arithmetic')">
-                <h3>CMOS VLSI Design for Multiplication and Division Modules</h3>
-                <p>CMOS VLSI design implementing Wallace Tree multiplication and non-restoring division for integer arithmetic.</p>
-                <span class="status-badge">In Progress</span>
+                <h3>TensorFloat32 Dadda Tree Multiplier in CMOS VLSI</h3>
+                <p>CMOS VLSI implementation of a high-speed Dadda tree multiplier optimized for TensorFloat32 arithmetic operations.</p>
                 <span class="read-more-btn">→</span>
               </div>
               

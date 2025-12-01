@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaeyoung Kil's Video Journalism Portfolio</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .video-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .video-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        .video-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .video-header p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .video-card {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 1rem 1.5rem 1.5rem 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .video-card h3 {
+            margin: 0 0 0.8rem 0;
+            color: #333;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .video-embed {
+            position: relative;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            background: #000;
+            overflow: hidden;
+            /* Default aspect ratio container */
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .video-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .video-link:hover {
+            text-decoration: underline;
+            color: #333;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <div class="video-header">
+            <h1><span style="font-size: 2.5rem; font-weight: 700;">Jaeyoung Kil's</span><br>Video Journalism Portfolio</h1>
+            <p>Collection of video assignments for JAM 365 - Video Journalism</p>
+        </div>
+
+        <div class="video-grid" id="videoGrid">
+            <!-- Videos will be dynamically loaded here -->
+        </div>
+
+    </div>
+
+    <script>
+        // Simple dark mode support if your main site has it
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+        }
+
+        // ============================================
+        // VIDEO DATA - EDIT THIS SECTION TO ADD YOUR VIDEOS
+        // ============================================
+        const videos = [
+            {
+                title: "VO",
+                date: "December 2024",
+                description: "Video journalism project - VO assignment",
+                youtubeUrl: "https://www.youtube.com/watch?v=YtFBNzwVXnQ",
+                // Paste the full embed iframe from YouTube Share > Embed:
+                embedCode: `<iframe width="560" height="315" src="https://www.youtube.com/embed/YtFBNzwVXnQ?si=EpTNpuiaetj2p3cv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+            },
+            {
+                title: "Interview",
+                date: "December 2024",
+                description: "Video journalism project - Interview assignment",
+                youtubeUrl: "https://www.youtube.com/watch?v=u2NZEixtObk",
+                embedCode: `<iframe width="560" height="315" src="https://www.youtube.com/embed/u2NZEixtObk?si=rqeoCqB3KG0dQum8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+            },
+            {
+                title: "VOSOT",
+                date: "December 2024",
+                description: "Video journalism project - VOSOT assignment",
+                youtubeUrl: "https://www.youtube.com/watch?v=FbKRJQ5C1Sw",
+                embedCode: `<iframe width="560" height="315" src="https://www.youtube.com/embed/FbKRJQ5C1Sw?si=Jksl4dKcceH8ggpi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+            },
+            {
+                title: "Social Media",
+                date: "December 2024",
+                description: "Video journalism project - Social media content",
+                youtubeUrl: "https://youtube.com/shorts/Qy5aor67uB4",
+                embedCode: `<iframe width="560" height="315" src="https://www.youtube.com/embed/Qy5aor67uB4?si=013yAPyzxBsR9vjq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+            },
+            {
+                title: "Package",
+                date: "December 2024",
+                description: "Video journalism project - Package",
+                youtubeUrl: "https://www.youtube.com/watch?v=6K07fHJAwsI",
+                embedCode: `<iframe width="560" height="315" src="https://www.youtube.com/embed/6K07fHJAwsI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+            },
+            // Test video (remove this when your video works)
+            /*
+            {
+                title: "Test Video (Remove Later)",
+                date: "Test",
+                description: "This is a test with a known working video to verify embedding works",
+                youtubeUrl: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+            },
+            */
+            // TO ADD MORE VIDEOS, FOLLOW THESE STEPS:
+            // 1. Go to your YouTube video
+            // 2. Click "Share" → "Embed"
+            // 3. Copy the entire <iframe> code
+            // 4. Paste it in the embedCode field below
+            /*
+            {
+                title: "Your Video Title Here",
+                date: "Month Day, Year",
+                description: "Your video description here.",
+                youtubeUrl: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
+                embedCode: `PASTE_FULL_IFRAME_CODE_HERE`,
+            },
+            */
+            // NOTE: Unlisted videos work fine with this page!
+            // If a video won't embed, it's usually because the uploader disabled embedding.
+            // In that case, set embedDisabled: true for that video.
+        ];
+        // ============================================
+        // END OF VIDEO DATA SECTION
+        // ============================================
+
+        // Function to extract YouTube video ID from various URL formats
+        function getYouTubeId(url) {
+            // Updated regex to better handle YouTube URLs
+            let videoId = null;
+
+            // Try different patterns
+            // Standard youtube.com/watch?v=VIDEO_ID
+            const watchMatch = url.match(/[?&]v=([^#&?]{11})/);
+            if (watchMatch) {
+                videoId = watchMatch[1];
+            }
+
+            // youtu.be/VIDEO_ID format
+            if (!videoId) {
+                const shortMatch = url.match(/youtu\.be\/([^#&?]{11})/);
+                if (shortMatch) {
+                    videoId = shortMatch[1];
+                }
+            }
+
+            // youtube.com/embed/VIDEO_ID format
+            if (!videoId) {
+                const embedMatch = url.match(/embed\/([^#&?]{11})/);
+                if (embedMatch) {
+                    videoId = embedMatch[1];
+                }
+            }
+
+            console.log('Extracted video ID:', videoId, 'from URL:', url);
+            return videoId;
+        }
+
+        // Function to render videos on the page
+        function renderVideos() {
+            const videoGrid = document.getElementById('videoGrid');
+
+            videos.forEach((video, index) => {
+                const videoCard = document.createElement('div');
+                videoCard.className = 'video-card';
+
+                let videoContent;
+
+                // If embedCode is provided, use it directly
+                if (video.embedCode) {
+                    videoContent = video.embedCode;
+                } else if (video.embedDisabled) {
+                    videoContent = `
+                        <div style="padding: 3rem 2rem; text-align: center; background: #f0f0f0; border-radius: 8px;">
+                            <p style="color: #333; font-size: 1.1rem; margin-bottom: 1rem;">📹 Video Available on YouTube</p>
+                            <p style="color: #666; margin-bottom: 1.5rem;">This video cannot be embedded here. Click below to watch on YouTube.</p>
+                            <a href="${video.youtubeUrl}" target="_blank" style="display: inline-block; padding: 12px 24px; background: #ff0000; color: white; text-decoration: none; border-radius: 4px; font-weight: 600;">
+                                Watch on YouTube →
+                            </a>
+                        </div>`;
+                } else {
+                    // Fallback to trying to extract video ID
+                    const videoId = getYouTubeId(video.youtubeUrl);
+                    if (videoId) {
+                        videoContent = `<iframe width="560" height="315"
+                                src="https://www.youtube.com/embed/${videoId}"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                        </iframe>`;
+                    } else {
+                        videoContent = `
+                            <div style="padding: 2rem; text-align: center; background: #f0f0f0; border-radius: 8px;">
+                                <p style="color: #666;">Invalid YouTube URL. Please check the link.</p>
+                                <small style="color: #999;">URL: ${video.youtubeUrl}</small>
+                            </div>`;
+                    }
+                }
+
+                videoCard.innerHTML = `
+                    <h3>${video.title}</h3>
+                    <div class="video-embed">
+                        ${videoContent}
+                    </div>
+                    ${video.youtubeUrl && !video.embedDisabled ?
+                        `<a href="${video.youtubeUrl}" target="_blank" class="video-link">View on YouTube →</a>` :
+                        ''
+                    }
+                `;
+
+                videoGrid.appendChild(videoCard);
+            });
+
+            // If no videos are defined, show instructions
+            if (videos.length === 0) {
+                videoGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: #f9f9f9; border-radius: 12px;">
+                        <h3 style="color: #666; margin-bottom: 1rem;">No Videos Added Yet</h3>
+                        <p style="color: #999;">To add videos, edit the 'videos' array in the JavaScript section of this HTML file.</p>
+                        <p style="color: #999; margin-top: 1rem;">Simply add your YouTube URLs and descriptions to the videos array.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Render videos when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            renderVideos();
+
+            // Add error handling for iframes
+            setTimeout(() => {
+                const iframes = document.querySelectorAll('.video-embed iframe');
+                iframes.forEach((iframe, index) => {
+                    iframe.onerror = function() {
+                        console.error('Failed to load video:', this.src);
+                        const videoData = videos[index];
+                        this.parentElement.innerHTML = `
+                            <div style="padding: 3rem 2rem; text-align: center; background: #f0f0f0; border-radius: 8px;">
+                                <p style="color: #333; font-size: 1.1rem; margin-bottom: 1rem;">📹 Video Embedding Error</p>
+                                <p style="color: #666; margin-bottom: 0.5rem;"><strong>Error 153:</strong> Cannot embed from local file</p>
+                                <p style="color: #666; margin-bottom: 1.5rem;">This will work once deployed to GitHub Pages!</p>
+                                <a href="${videoData.youtubeUrl}" target="_blank" style="display: inline-block; padding: 12px 24px; background: #ff0000; color: white; text-decoration: none; border-radius: 4px; font-weight: 600;">
+                                    Watch on YouTube →
+                                </a>
+                            </div>
+                        `;
+                    };
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>

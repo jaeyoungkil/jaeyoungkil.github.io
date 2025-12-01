@@ -221,6 +221,20 @@
             }
           ]
         },
+        'max-accelerator': {
+          title: 'MAX: Matrix Acceleration Extension for RISC-V',
+          description: 'Custom matrix accelerator integrated into RISC-V core with 4×4 systolic array for high-performance matrix computations.',
+          details: [
+            'Designed ISA extension for matrix operations integrated with RISC-V base instruction set',
+            'Implemented 4×4 systolic array with operand-injection and partial-sum datapaths in RTL',
+            'Developed coordinated multi-cycle controller for seamless CPU-accelerator interaction',
+            'Introduced tiling mechanisms inspired by RISC-V vector extension for large matrix support',
+            'Extended gem5 full-system simulator to model accelerator behavior and memory interactions',
+            'Analyzed register-file pressure, memory bandwidth, and instruction scheduling bottlenecks'
+          ],
+          technologies: ['SystemVerilog', 'RISC-V ISA', 'gem5', 'Systolic Arrays', 'HW-SW Co-design', 'Computer Architecture'],
+          github: null
+        },
         'vlsi-arithmetic': {
           title: 'TensorFloat32 Dadda Tree Multiplier in CMOS VLSI',
           description: 'CMOS VLSI implementation of a high-speed Dadda tree multiplier optimized for TensorFloat32 arithmetic operations.',
@@ -486,6 +500,12 @@
             </div>
           </div>
           <div class="projects-grid" id="projectsGrid">
+              <div class="project-card" onclick="showProjectModal('max-accelerator')">
+                <h3>MAX: Matrix Acceleration Extension for RISC-V</h3>
+                <p>Custom matrix accelerator integrated into RISC-V core with 4×4 systolic array for high-performance matrix computations.</p>
+                <span class="read-more-btn">→</span>
+              </div>
+
               <div class="project-card" onclick="showProjectModal('vlsi-arithmetic')">
                 <h3>TensorFloat32 Dadda Tree Multiplier in CMOS VLSI</h3>
                 <p>CMOS VLSI implementation of a high-speed Dadda tree multiplier optimized for TensorFloat32 arithmetic operations.</p>
